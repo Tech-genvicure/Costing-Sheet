@@ -1,0 +1,36 @@
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment
+.env
+.env.*
+
+# Streamlit
+.streamlit/secrets.toml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Test cache
+.pytest_cache/
+.mypy_cache/
+
+# Excel temporary files
+~$*.xlsx
+~$*.xls

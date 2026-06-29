@@ -1,0 +1,2718 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
+<document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
+   <id root="08c46856-2700-4885-ba5d-dced9d8056e1"/>
+   <code code="34391-3" codeSystem="2.16.840.1.113883.6.1" displayName="HUMAN PRESCRIPTION DRUG LABEL"/>
+   <title>These highlights do not include all the information needed to use ISTODAX safely and effectively.  See full prescribing information for ISTODAX.<br/>
+      <br/>ISTODAX<sup>®</sup> (romidepsin) for injection, for intravenous use<br/>Initial U.S. Approval:  2009</title>
+   <effectiveTime value="20230131"/>
+   <setId root="03b39d40-90fe-11df-9de6-0002a5d5c51b"/>
+   <versionNumber value="21"/>
+   <author>
+      <time/>
+      <assignedEntity>
+         <representedOrganization>
+            <id extension="174201137" root="1.3.6.1.4.1.519.1"/>
+            <name>Celgene Corporation</name>
+            <assignedEntity>
+               <assignedOrganization/>
+            </assignedEntity>
+         </representedOrganization>
+      </assignedEntity>
+   </author>
+   <component>
+      <structuredBody>
+         <component>
+            <section>
+               <id root="618fab75-2e4f-436b-a6d0-cba723e0569f"/>
+               <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL product data elements section"/>
+               <effectiveTime value="20210730"/>
+               <subject>
+                  <manufacturedProduct>
+                     <manufacturedProduct>
+                        <code code="59572-983" codeSystem="2.16.840.1.113883.6.69"/>
+                        <name>ISTODAX</name>
+                        <formCode code="C47916" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="KIT"/>
+                        <asEntityWithGeneric>
+                           <genericMedicine>
+                              <name>romidepsin</name>
+                           </genericMedicine>
+                        </asEntityWithGeneric>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="1"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="59572-983-01" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43182" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="CARTON"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <characteristic classCode="OBS">
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="Type 0: Not a Combination Product" xsi:type="CE"/>
+                              </characteristic>
+                           </subjectOf>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="completed"/>
+                                 <effectiveTime>
+                                    <low value="20100104"/>
+                                    <high value="20160727"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                        </asContent>
+                        <part>
+                           <quantity>
+                              <numerator unit="mL" value="2"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <partProduct>
+                              <code code="59572-961" codeSystem="2.16.840.1.113883.6.69"/>
+                              <name>ISTODAX</name>
+                              <formCode code="C42957" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION"/>
+                              <asEntityWithGeneric>
+                                 <genericMedicine>
+                                    <name>romidepsin</name>
+                                 </genericMedicine>
+                              </asEntityWithGeneric>
+                              <ingredient classCode="ACTIB">
+                                 <quantity>
+                                    <numerator unit="mg" value="10"/>
+                                    <denominator unit="mL" value="2"/>
+                                 </quantity>
+                                 <ingredientSubstance>
+                                    <code code="CX3T89XQBK" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>ROMIDEPSIN</name>
+                                    <activeMoiety>
+                                       <activeMoiety>
+                                          <code code="CX3T89XQBK" codeSystem="2.16.840.1.113883.4.9"/>
+                                          <name>ROMIDEPSIN</name>
+                                       </activeMoiety>
+                                    </activeMoiety>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="FZ989GH94E" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>POVIDONE, UNSPECIFIED</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <asContent>
+                                 <quantity>
+                                    <numerator unit="mL" value="2"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="59572-961-10" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43209" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="VIAL, GLASS"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <characteristic>
+                                       <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                       <value code="C112160" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="Type 0: Not a Combination Product" xsi:type="CV"/>
+                                    </characteristic>
+                                 </subjectOf>
+                              </asContent>
+                           </partProduct>
+                           <subjectOf>
+                              <approval>
+                                 <id extension="NDA022393" root="2.16.840.1.113883.3.150"/>
+                                 <code code="C73594" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="NDA"/>
+                                 <author>
+                                    <territorialAuthority>
+                                       <territory>
+                                          <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                       </territory>
+                                    </territorialAuthority>
+                                 </author>
+                              </approval>
+                           </subjectOf>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20100104"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <consumedIn>
+                              <substanceAdministration>
+                                 <routeCode code="C38276" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="INTRAVENOUS"/>
+                              </substanceAdministration>
+                           </consumedIn>
+                        </part>
+                        <part>
+                           <quantity>
+                              <numerator unit="mL" value="2"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <partProduct>
+                              <code code="59572-972" codeSystem="2.16.840.1.113883.6.69"/>
+                              <name>Diluent for ISTODAX</name>
+                              <formCode code="C42953" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="LIQUID"/>
+                              <asEntityWithGeneric>
+                                 <genericMedicine>
+                                    <name>alcohol and propylene glycol</name>
+                                 </genericMedicine>
+                              </asEntityWithGeneric>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="3K9958V90M" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>ALCOHOL</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="6DC9Q167V3" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>PROPYLENE GLYCOL</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <asContent>
+                                 <quantity>
+                                    <numerator unit="mL" value="2"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="59572-972-02" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43209" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="VIAL, GLASS"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <characteristic>
+                                       <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                       <value code="C112160" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="Type 0: Not a Combination Product" xsi:type="CV"/>
+                                    </characteristic>
+                                 </subjectOf>
+                              </asContent>
+                           </partProduct>
+                           <subjectOf>
+                              <approval>
+                                 <id extension="NDA022393" root="2.16.840.1.113883.3.150"/>
+                                 <code code="C73594" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="NDA"/>
+                                 <author>
+                                    <territorialAuthority>
+                                       <territory>
+                                          <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                       </territory>
+                                    </territorialAuthority>
+                                 </author>
+                              </approval>
+                           </subjectOf>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20100104"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <consumedIn>
+                              <substanceAdministration>
+                                 <routeCode code="C38276" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="INTRAVENOUS"/>
+                              </substanceAdministration>
+                           </consumedIn>
+                        </part>
+                     </manufacturedProduct>
+                     <subjectOf>
+                        <approval>
+                           <id extension="NDA022393" root="2.16.840.1.113883.3.150"/>
+                           <code code="C73594" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="NDA"/>
+                           <author>
+                              <territorialAuthority>
+                                 <territory>
+                                    <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                 </territory>
+                              </territorialAuthority>
+                           </author>
+                        </approval>
+                     </subjectOf>
+                     <subjectOf>
+                        <marketingAct>
+                           <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime>
+                              <low value="20100104"/>
+                              <high value="20160727"/>
+                           </effectiveTime>
+                        </marketingAct>
+                     </subjectOf>
+                  </manufacturedProduct>
+               </subject>
+               <subject>
+                  <manufacturedProduct>
+                     <manufacturedProduct>
+                        <code code="59572-984" codeSystem="2.16.840.1.113883.6.69"/>
+                        <name>ISTODAX</name>
+                        <formCode code="C47916" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="KIT"/>
+                        <asEntityWithGeneric>
+                           <genericMedicine>
+                              <name>romidepsin</name>
+                           </genericMedicine>
+                        </asEntityWithGeneric>
+                        <asContent>
+                           <quantity>
+                              <numerator unit="1" value="1"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="59572-984-01" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43182" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="CARTON"/>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <characteristic classCode="OBS">
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="Type 0: Not a Combination Product" xsi:type="CE"/>
+                              </characteristic>
+                           </subjectOf>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20100104"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                        </asContent>
+                        <part>
+                           <quantity>
+                              <numerator unit="mL" value="2.2"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <partProduct>
+                              <code code="59572-962" codeSystem="2.16.840.1.113883.6.69"/>
+                              <name>ISTODAX</name>
+                              <formCode code="C42957" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION"/>
+                              <asEntityWithGeneric>
+                                 <genericMedicine>
+                                    <name>romidepsin</name>
+                                 </genericMedicine>
+                              </asEntityWithGeneric>
+                              <ingredient classCode="ACTIB">
+                                 <quantity>
+                                    <numerator unit="mg" value="10"/>
+                                    <denominator unit="mL" value="2"/>
+                                 </quantity>
+                                 <ingredientSubstance>
+                                    <code code="CX3T89XQBK" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>ROMIDEPSIN</name>
+                                    <activeMoiety>
+                                       <activeMoiety>
+                                          <code code="CX3T89XQBK" codeSystem="2.16.840.1.113883.4.9"/>
+                                          <name>ROMIDEPSIN</name>
+                                       </activeMoiety>
+                                    </activeMoiety>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="FZ989GH94E" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>POVIDONE, UNSPECIFIED</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <asContent>
+                                 <quantity>
+                                    <numerator unit="mL" value="2.2"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="59572-962-10" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43209" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="VIAL, GLASS"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <characteristic>
+                                       <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                       <value code="C112160" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="Type 0: Not a Combination Product" xsi:type="CV"/>
+                                    </characteristic>
+                                 </subjectOf>
+                              </asContent>
+                           </partProduct>
+                           <subjectOf>
+                              <approval>
+                                 <id extension="NDA022393" root="2.16.840.1.113883.3.150"/>
+                                 <code code="C73594" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="NDA"/>
+                                 <author>
+                                    <territorialAuthority>
+                                       <territory>
+                                          <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                       </territory>
+                                    </territorialAuthority>
+                                 </author>
+                              </approval>
+                           </subjectOf>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20100104"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <consumedIn>
+                              <substanceAdministration>
+                                 <routeCode code="C38276" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="INTRAVENOUS"/>
+                              </substanceAdministration>
+                           </consumedIn>
+                        </part>
+                        <part>
+                           <quantity>
+                              <numerator unit="mL" value="2.4"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <partProduct>
+                              <code code="59572-973" codeSystem="2.16.840.1.113883.6.69"/>
+                              <name>Diluent for ISTODAX</name>
+                              <formCode code="C42953" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="LIQUID"/>
+                              <asEntityWithGeneric>
+                                 <genericMedicine>
+                                    <name>alcohol and propylene glycol</name>
+                                 </genericMedicine>
+                              </asEntityWithGeneric>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="3K9958V90M" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>ALCOHOL</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="6DC9Q167V3" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>PROPYLENE GLYCOL</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <asContent>
+                                 <quantity>
+                                    <numerator unit="mL" value="2.4"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="59572-973-02" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43209" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="VIAL, GLASS"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <characteristic>
+                                       <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                       <value code="C112160" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="Type 0: Not a Combination Product" xsi:type="CV"/>
+                                    </characteristic>
+                                 </subjectOf>
+                              </asContent>
+                           </partProduct>
+                           <subjectOf>
+                              <approval>
+                                 <id extension="NDA022393" root="2.16.840.1.113883.3.150"/>
+                                 <code code="C73594" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="NDA"/>
+                                 <author>
+                                    <territorialAuthority>
+                                       <territory>
+                                          <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                       </territory>
+                                    </territorialAuthority>
+                                 </author>
+                              </approval>
+                           </subjectOf>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20100104"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <consumedIn>
+                              <substanceAdministration>
+                                 <routeCode code="C38276" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="INTRAVENOUS"/>
+                              </substanceAdministration>
+                           </consumedIn>
+                        </part>
+                     </manufacturedProduct>
+                     <subjectOf>
+                        <approval>
+                           <id extension="NDA022393" root="2.16.840.1.113883.3.150"/>
+                           <code code="C73594" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="NDA"/>
+                           <author>
+                              <territorialAuthority>
+                                 <territory>
+                                    <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                 </territory>
+                              </territorialAuthority>
+                           </author>
+                        </approval>
+                     </subjectOf>
+                     <subjectOf>
+                        <marketingAct>
+                           <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <statusCode code="active"/>
+                           <effectiveTime>
+                              <low value="20100104"/>
+                           </effectiveTime>
+                        </marketingAct>
+                     </subjectOf>
+                  </manufacturedProduct>
+               </subject>
+            </section>
+         </component>
+         <component>
+            <section ID="ID_e5a805be-531b-47b3-8ce7-7f258248280d">
+               <id root="3d92a61b-369b-4ebc-9898-d549620a30c4"/>
+               <code code="43683-2" codeSystem="2.16.840.1.113883.6.1" displayName="RECENT MAJOR CHANGES SECTION"/>
+               <effectiveTime value="20230131"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph/>
+                        <table styleCode="Noautorules" width="100%">
+                           <col width="92%"/>
+                           <col width="8%"/>
+                           <tbody>
+                              <tr>
+                                 <td valign="top">
+                                    <paragraph>Indications and Usage, Peripheral T-cell Lymphoma (1.2) Removed</paragraph>
+                                 </td>
+                                 <td align="right" valign="top">
+                                    <paragraph>7/2021</paragraph>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section ID="S1">
+               <id root="0e8531c4-6285-4630-a61b-1c7f9a6862a5"/>
+               <code code="34067-9" codeSystem="2.16.840.1.113883.6.1" displayName="INDICATIONS &amp; USAGE SECTION"/>
+               <title>1 INDICATIONS AND USAGE</title>
+               <text>
+                  <paragraph>
+                     <content styleCode="xmChange">ISTODAX is indicated for the treatment of cutaneous T-cell lymphoma (CTCL) in adult patients who have received at least one prior systemic therapy.</content>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20210730"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph>ISTODAX is a histone deacetylase (HDAC) inhibitor indicated for the treatment of cutaneous T-cell lymphoma (CTCL) in adult patients who have received at least one prior systemic therapy (<linkHtml href="#S1">1</linkHtml>).</paragraph>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section ID="S2">
+               <id root="a332ae21-d176-4877-a838-4c646cf478e6"/>
+               <code code="34068-7" codeSystem="2.16.840.1.113883.6.1" displayName="DOSAGE &amp; ADMINISTRATION SECTION"/>
+               <title>2 DOSAGE AND ADMINISTRATION</title>
+               <effectiveTime value="20230131"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list listType="unordered">
+                           <item>
+                              <caption>•</caption>14 mg/m<sup>2</sup> administered intravenously over a 4-hour period on days 1, 8, and 15 of a 28-day cycle.  Repeat cycles every 28 days provided that the patient continues to benefit from and tolerates the drug (<linkHtml href="#S2.1">2.1</linkHtml>).</item>
+                           <item>
+                              <caption>•</caption>Discontinue or interrupt treatment (with or without dose reduction to 10 mg/m<sup>2</sup>) to manage drug toxicity (<linkHtml href="#S2.2">2.2</linkHtml>).</item>
+                           <item>
+                              <caption>•</caption>Reduce starting dose in patients with moderate and severe hepatic impairment (<linkHtml href="#S2.3">2.3</linkHtml>).</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="S2.1">
+                     <id root="94ec1cf5-d2e6-4c74-a079-13905589ff40"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.1   Dosage Information</title>
+                     <text>
+                        <paragraph>The recommended dosage of romidepsin is 14 mg/m<sup>2</sup> administered intravenously over a 4-hour period on days 1, 8, and 15 of a 28-day cycle.  Cycles should be repeated every 28 days provided that the patient continues to benefit from and tolerates the drug.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S2.2">
+                     <id root="68f9eda2-a79e-461f-8deb-b93f440adc56"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.2   Dosage Modification</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="italics">Nonhematologic toxicities except alopecia</content>
+                        </paragraph>
+                        <list listType="unordered">
+                           <item>
+                              <caption>•</caption>Grade 2 or 3 toxicity: Treatment with romidepsin should be delayed until toxicity returns to Grade 0-1 or baseline, then therapy may be restarted at 14 mg/m<sup>2</sup>. If Grade 3 toxicity recurs, treatment with romidepsin should be delayed until toxicity returns to Grade 0-1 or baseline and the dose should be permanently reduced to 10 mg/m<sup>2</sup>.</item>
+                           <item>
+                              <caption>•</caption>Grade 4 toxicity: Treatment with romidepsin should be delayed until toxicity returns to Grade 0-1 or baseline, then the dose should be permanently reduced to 10 mg/m<sup>2</sup>.</item>
+                           <item>
+                              <caption>•</caption>Romidepsin should be discontinued if Grade 3 or 4 toxicities recur after dose reduction.</item>
+                        </list>
+                        <paragraph>
+                           <content styleCode="italics">Hematologic toxicities</content>
+                        </paragraph>
+                        <list listType="unordered">
+                           <item>
+                              <caption>•</caption>Grade 3 or 4 neutropenia or thrombocytopenia: Treatment with romidepsin should be delayed until the specific cytopenia returns to ANC greater than or equal to 1.5×10<sup>9</sup>/L and platelet count greater than or equal to 75×10<sup>9</sup>/L or baseline, then therapy may be restarted at 14 mg/m<sup>2</sup>.</item>
+                           <item>
+                              <caption>•</caption>Grade 4 febrile (greater than or equal to 38.5ºC) neutropenia or thrombocytopenia that requires platelet transfusion: Treatment with romidepsin should be delayed until the specific cytopenia returns to less than or equal to Grade 1 or baseline, and then the dose should be permanently reduced to 10 mg/m<sup>2</sup>.</item>
+                        </list>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S2.3">
+                     <id root="d872b4ff-4a32-4913-9ee3-dc1b9e853ebe"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.3	Dosage in Patients with Hepatic Impairment</title>
+                     <text>
+                        <paragraph>For patients with moderate or severe hepatic impairment, reduce the starting dose of ISTODAX as shown in Table 1 and monitor for toxicities more frequently. Dosage adjustment is not required for patients with mild hepatic impairment.</paragraph>
+                        <table ID="_RefID0ERBAE" width="60%">
+                           <caption>Table 1: Recommendations for Starting Dose in Patients with Moderate and Severe Hepatic Impairment</caption>
+                           <col width="22%"/>
+                           <col width="23%"/>
+                           <col width="23%"/>
+                           <thead>
+                              <tr>
+                                 <th align="center" styleCode="Rrule Botrule Lrule Toprule " valign="middle">
+                                    <content styleCode="bold">Hepatic Impairment</content>
+                                 </th>
+                                 <th align="center" styleCode="Rrule Botrule Toprule " valign="middle">
+                                    <content styleCode="bold">Bilirubin Levels</content>
+                                 </th>
+                                 <th align="center" styleCode="Rrule Botrule Toprule " valign="middle">
+                                    <content styleCode="bold">ISTODAX Dose</content>
+                                 </th>
+                              </tr>
+                           </thead>
+                           <tfoot>
+                              <tr>
+                                 <td align="left" colspan="3" valign="top">ULN=Upper limit of normal.</td>
+                              </tr>
+                           </tfoot>
+                           <tbody>
+                              <tr>
+                                 <td styleCode="Rrule Lrule Toprule Botrule " valign="middle">
+                                    <paragraph>
+                                       <content styleCode="bold">Moderate</content>
+                                    </paragraph>
+                                 </td>
+                                 <td align="center" styleCode="Rrule Toprule Botrule " valign="middle">
+                                    <paragraph>greater than 1.5 × ULN to less than or equal to 3 × ULN</paragraph>
+                                 </td>
+                                 <td align="center" styleCode="Rrule Toprule Botrule " valign="middle">
+                                    <paragraph>7 mg/m<sup>2</sup>
+                                    </paragraph>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td styleCode="Rrule Botrule Lrule " valign="middle">
+                                    <paragraph>
+                                       <content styleCode="bold">Severe</content>
+                                    </paragraph>
+                                 </td>
+                                 <td align="center" styleCode="Rrule Botrule " valign="middle">
+                                    <paragraph>greater than 3 × ULN</paragraph>
+                                 </td>
+                                 <td align="center" styleCode="Rrule Botrule " valign="middle">
+                                    <paragraph>5 mg/m<sup>2</sup>
+                                    </paragraph>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </text>
+                     <effectiveTime value="20230131"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S2.4">
+                     <id root="4330b588-f50e-478f-854d-13d293762bf5"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>2.4   Instructions for Preparation and Intravenous Administration</title>
+                     <text>
+                        <paragraph>ISTODAX is a hazardous drug. Use appropriate handling procedures.<sup>1</sup>
+                        </paragraph>
+                        <paragraph>ISTODAX must be reconstituted with the supplied diluent and further diluted with 0.9% Sodium Chloride Injection, USP, before intravenous infusion.</paragraph>
+                        <paragraph>ISTODAX and diluent vials contain an overfill to ensure the recommended volume can be withdrawn at a concentration of 5 mg/mL. </paragraph>
+                        <list listType="unordered">
+                           <item>
+                              <caption>•</caption>Each 10 mg single-dose vial of ISTODAX must be reconstituted with 2.2 mL of the supplied diluent.</item>
+                           <item>
+                              <caption>•</caption>With a suitable syringe, aseptically withdraw 2.2 mL from the supplied diluent vial, and slowly inject it into the ISTODAX (romidepsin) for injection vial. Swirl the contents of the vial until there are no visible particles in the resulting solution. The reconstituted solution will contain ISTODAX 5 mg/mL. The reconstituted ISTODAX vial will contain 2 mL of deliverable volume of drug product. The reconstituted ISTODAX solution is chemically stable for up to 8 hours at room temperature.</item>
+                           <item>
+                              <caption>•</caption>Extract the appropriate amount of ISTODAX from the vials to deliver the desired dose, using proper aseptic technique.  Before intravenous infusion, further dilute ISTODAX in 500 mL 0.9% Sodium Chloride Injection, USP.</item>
+                           <item>
+                              <caption>•</caption>Infuse over 4 hours.</item>
+                        </list>
+                        <paragraph>The diluted solution is compatible with polyvinyl chloride (PVC), ethylene vinyl acetate (EVA), polyethylene (PE) infusion bags as well as glass bottles, and is chemically stable for up to 24 hours when stored at room temperature.  However, it should be administered as soon after dilution as possible.</paragraph>
+                        <paragraph>Parenteral drug products should be inspected visually for particulate matter and discoloration before administration, whenever solution and container permit.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S3">
+               <id root="e7167c22-7e5d-48dc-b026-1767e9d5f810"/>
+               <code code="43678-2" codeSystem="2.16.840.1.113883.6.1" displayName="DOSAGE FORMS &amp; STRENGTHS SECTION"/>
+               <title>3 DOSAGE FORMS AND STRENGTHS</title>
+               <text>
+                  <paragraph>For Injection: 10 mg of romidepsin as a lyophilized white powder in a single-dose vial for reconstitution and further dilution.</paragraph>
+               </text>
+               <effectiveTime value="20210730"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph>For injection: 10 mg of romidepsin as a lyophilized powder in single-dose vial for reconstitution (<linkHtml href="#S3">3</linkHtml>).</paragraph>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section ID="S4">
+               <id root="9035acb4-4344-46c0-bbdc-ef1a66eb1907"/>
+               <code code="34070-3" codeSystem="2.16.840.1.113883.6.1" displayName="CONTRAINDICATIONS SECTION"/>
+               <title>4 CONTRAINDICATIONS</title>
+               <text>
+                  <paragraph>None.</paragraph>
+               </text>
+               <effectiveTime value="20210730"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph>None (<linkHtml href="#S4">4</linkHtml>).</paragraph>
+                     </text>
+                  </highlight>
+               </excerpt>
+            </section>
+         </component>
+         <component>
+            <section ID="S5">
+               <id root="9a092244-e347-4ad0-b17d-bfd16226863f"/>
+               <code code="43685-7" codeSystem="2.16.840.1.113883.6.1" displayName="WARNINGS AND PRECAUTIONS SECTION"/>
+               <title>5 WARNINGS AND PRECAUTIONS</title>
+               <effectiveTime value="20210730"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list listType="unordered">
+                           <item>
+                              <caption>•</caption>
+                              <content styleCode="underline">Myelosuppression:</content> ISTODAX can cause thrombocytopenia, leukopenia (neutropenia and lymphopenia), and anemia; monitor blood counts during treatment with ISTODAX; interrupt and/or modify the dose as necessary  (<linkHtml href="#S5.1">5.1</linkHtml>).</item>
+                           <item>
+                              <caption>•</caption>
+                              <content styleCode="underline">Infections:</content> Fatal and serious infections.  Reactivation of DNA viruses (Epstein Barr and hepatitis B). Consider monitoring and prophylaxis in patients with evidence of prior hepatitis B (<linkHtml href="#S5.2">5.2</linkHtml>). </item>
+                           <item>
+                              <caption>•</caption>
+                              <content styleCode="underline">Electrocardiographic (ECG) changes:</content> Consider cardiovascular monitoring in patients with congenital long QT syndrome, a history of significant cardiovascular disease, and patients taking medicinal products that lead to significant QT prolongation.  Ensure that potassium and magnesium are within the normal range before administration of ISTODAX (<linkHtml href="#S5.3">5.3</linkHtml>).</item>
+                           <item>
+                              <caption>•</caption>
+                              <content styleCode="underline">Tumor lysis syndrome:</content> Patients with advanced stage disease and/or high tumor burden are at greater risk and should be closely monitored and appropriate precautions taken (<linkHtml href="#S5.4">5.4</linkHtml>).</item>
+                           <item>
+                              <caption>•</caption>
+                              <content styleCode="underline">Embryo-fetal toxicity:</content> Can cause fetal harm. Advise females of reproductive potential and males with female partners of reproductive potential of potential risk to a fetus and to use effective contraception (<linkHtml href="#S5.5">5.5</linkHtml>, <linkHtml href="#S8.1">8.1</linkHtml>, <linkHtml href="#S8.3">8.3</linkHtml>).</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="S5.1">
+                     <id root="b78bec75-27c3-4300-9c54-4af45fced01e"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.1  Myelosuppression</title>
+                     <text>
+                        <paragraph>Treatment with ISTODAX can cause thrombocytopenia, leukopenia (neutropenia and lymphopenia), and anemia. Monitor blood counts regularly during treatment with ISTODAX and modify the dose as necessary  <content styleCode="italics">[see <linkHtml href="#S2.2">Dosage and Administration (2.2)</linkHtml> and <linkHtml href="#S6.1">Adverse Reactions (6.1)</linkHtml>].</content>
+                        </paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S5.2">
+                     <id root="0bd569cd-86d2-41d3-9225-2511e9d7b313"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.2  Infections</title>
+                     <text>
+                        <paragraph>Fatal and serious infections have been reported in clinical trials of ISTODAX, including pneumonia, sepsis, and viral reactivation, including reactivation of Epstein Barr and hepatitis B viruses. These infections can occur during and following treatment. The risk of life-threatening infections may be greater in patients with a history of prior treatment with monoclonal antibodies directed against lymphocyte antigens and in patients with disease involvement of the bone marrow  <content styleCode="italics">[see <linkHtml href="#S6.1">Adverse Reactions (6.1)</linkHtml>]</content>.</paragraph>
+                        <paragraph>Reactivation of hepatitis B virus infection was reported in 1% of patients in clinical trials. In patients with evidence of prior hepatitis B infection, consider monitoring for reactivation, and consider antiviral prophylaxis.</paragraph>
+                        <paragraph>Reactivation of Epstein Barr viral infection leading to liver failure has occurred in recipients of ISTODAX including after ganciclovir prophylaxis.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S5.3">
+                     <id root="7b2066cd-d6c6-4e76-993c-6866fa74af31"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.3   Electrocardiographic Changes</title>
+                     <text>
+                        <paragraph>Several treatment-emergent morphological changes in ECGs (including T-wave and ST-segment changes) have been reported in clinical studies.  The clinical significance of these changes is unknown <content styleCode="italics">[see <linkHtml href="#S6.1">Adverse Reactions (6.1)</linkHtml>].</content>
+                        </paragraph>
+                        <paragraph>In patients with congenital long QT syndrome, patients with a history of significant cardiovascular disease, and patients taking anti-arrhythmic medicines or medicinal products that lead to significant QT prolongation, consider cardiovascular monitoring of ECGs at baseline and periodically during treatment.</paragraph>
+                        <paragraph>Confirm that potassium and magnesium levels are within normal range before administration of ISTODAX  <content styleCode="italics">[see <linkHtml href="#S6.1">Adverse Reactions (6.1)</linkHtml>]</content>.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S5.4">
+                     <id root="1ee818db-18f2-45cc-a5cd-9c4f0d06cab0"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.4  Tumor Lysis Syndrome</title>
+                     <text>
+                        <paragraph>Tumor lysis syndrome (TLS) has been reported to occur in recipients of ISTODAX, including in 1% of patients with tumor stage CTCL.  Patients with advanced stage disease and/or high tumor burden are at greater risk, should be closely monitored, and managed as appropriate.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S5.5">
+                     <id root="b635f642-831f-4ee8-9c33-bc95f200d69e"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>5.5 Embryo-Fetal Toxicity</title>
+                     <text>
+                        <paragraph>Based on its mechanism of action and findings from animal studies, ISTODAX can cause fetal harm when administered to a pregnant woman. In an animal reproductive study, romidepsin was embryocidal and caused adverse developmental outcomes at exposures below those in patients at the recommended dose of 14 mg/m<sup>2</sup>. Advise females of reproductive potential to use effective contraception during treatment and for 1 month after the last dose. Advise males with female partners of reproductive potential to use effective contraception during treatment and for 1 month after the last dose <content styleCode="italics">[see <linkHtml href="#S8.1">Use in Specific Populations (8.1</linkHtml>, <linkHtml href="#S8.3">8.3)</linkHtml> and <linkHtml href="#S12.1">Clinical Pharmacology (12.1)</linkHtml>]</content>. </paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S6">
+               <id root="87570ce2-e56d-4229-bbf2-f15c3f706682"/>
+               <code code="34084-4" codeSystem="2.16.840.1.113883.6.1" displayName="ADVERSE REACTIONS SECTION"/>
+               <title>6 ADVERSE REACTIONS</title>
+               <text>
+                  <paragraph>The following adverse reactions are described in more detail in other sections of the prescribing information.</paragraph>
+                  <list listType="unordered">
+                     <item>
+                        <caption>•</caption>Myelosuppression <content styleCode="italics">[see <linkHtml href="#S5.1">Warnings and Precautions (5.1)</linkHtml>]</content>
+                     </item>
+                     <item>
+                        <caption>•</caption>Infections <content styleCode="italics">[see <linkHtml href="#S5.2"> Warnings and Precautions (5.2)</linkHtml>]</content>
+                     </item>
+                     <item>
+                        <caption>•</caption>Electrocardiographic Changes  <content styleCode="italics">[see <linkHtml href="#S5.3">Warnings and Precautions (5.3)</linkHtml>]</content>
+                     </item>
+                     <item>
+                        <caption>•</caption>Tumor Lysis Syndrome  <content styleCode="italics">[see <linkHtml href="#S5.4"> Warnings and Precautions (5.4)</linkHtml>]</content>
+                     </item>
+                  </list>
+               </text>
+               <effectiveTime value="20230131"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <paragraph>The most common adverse reactions (≥30%), excluding laboratory abnormalities, are nausea, fatigue, infections, vomiting, anorexia, electrocardiogram ST-T wave changes, dysgeusia, constipation and pruritis. Grade 3‐4 laboratory abnormalities (≥10%) include lymphopenia, neutropenia, anemia and thrombocytopenia (<linkHtml href="#S6">6</linkHtml>).</paragraph>
+                        <paragraph>
+                           <br/>
+                        </paragraph>
+                        <paragraph>
+                           <content styleCode="bold">To report SUSPECTED ADVERSE REACTIONS, contact Bristol-Myers Squibb at 1-800-721-5072 or the FDA at 1-800-FDA-1088 or www.fda.gov/medwatch.</content>
+                        </paragraph>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="S6.1">
+                     <id root="aaacd18f-1bdb-4880-9d86-9ee2f3b030f8"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>6.1    Clinical Trials Experience</title>
+                     <text>
+                        <paragraph>Because clinical trials are conducted under widely varying conditions, adverse reaction rates observed in the clinical trials of a drug cannot be directly compared to rates in the clinical trials of another drug and may not reflect the rates observed in practice.</paragraph>
+                        <paragraph>The data in the WARNINGS AND PRECAUTIONS reflect exposure to ISTODAX in four clinical trials involving 363 patients with T-cell lymphoma, including 185 patients with CTCL. ISTODAX was administered as a single agent at a dosage of 14 mg/m<sup>2</sup> on days 1, 8, and 15 of a 28-day cycle. Among 363 patients who received ISTODAX, 21% were exposed for 6 months or longer and 13% were exposed for greater than one year.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                     <component>
+                        <section ID="ID_817319c4-e3d6-4ff8-a3d3-2e8f4a9f1b23">
+                           <id root="cbe488a9-55bd-40de-9ba1-73ffc52b18e8"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="underline">Cutaneous T-Cell Lymphoma</content>
+                           </title>
+                           <text>
+                              <paragraph>The safety of ISTODAX was evaluated in 185 patients with CTCL in 2 single arm clinical studies in which patients received a dosage of 14 mg/m<sup>2</sup> on days 1, 8, and 15 of a 28-day cycle. Treatment continued as long as the patient benefitted from and tolerated the drug. The mean duration of treatment in these studies was 5.6 months (range: &lt;1 to 83.4 months).</paragraph>
+                              <paragraph>
+                                 <content styleCode="italics">Common Adverse Reactions</content>
+                              </paragraph>
+                              <paragraph>Table 2 summarizes the most frequent adverse reactions (&gt;20%) regardless of causality using the National Cancer Institute-Common Terminology Criteria for Adverse Events (NCI-CTCAE, Version 3.0).  Due to methodological differences between the studies, the AE data are presented separately for Study 1 and Study 2.  Adverse reactions are ranked by their incidence in Study 1.  Laboratory abnormalities commonly reported (&gt;20%) as adverse reactions are included in Table 2.</paragraph>
+                              <table width="100.18%">
+                                 <caption>Table 2. Adverse Reactions Occurring in &gt;20% of Patients in Either CTCL Study (N=185)</caption>
+                                 <col width="33%"/>
+                                 <col width="17%"/>
+                                 <col width="17%"/>
+                                 <col width="17%"/>
+                                 <col width="17%"/>
+                                 <tbody>
+                                    <tr>
+                                       <td rowspan="2" styleCode="Rrule Botrule Lrule Toprule " valign="bottom">
+                                          <paragraph>
+                                             <content styleCode="bold">Adverse Reactions n (%)</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" colspan="2" styleCode="Rrule Botrule Lrule Toprule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="bold">Study 1</content>
+                                             <br/>
+                                             <content styleCode="bold">(n=102)</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" colspan="2" styleCode="Rrule Botrule Lrule Toprule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="bold">Study 2</content>
+                                             <br/>
+                                             <content styleCode="bold">(n=83)</content>
+                                          </paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td align="center" styleCode="Lrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="bold">All grades</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Lrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="bold">Grade 3 or 4</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Lrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="bold">All grades</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="bold">Grade 3 or 4</content>
+                                          </paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="italics">Any adverse reactions</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="italics">99 (97)</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="italics">36 (35)</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="italics">83 (100)</content>
+                                          </paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>
+                                             <content styleCode="italics">68 (82)</content>
+                                          </paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Nausea</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>57 (56)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (3)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>71 (86)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>5 (6)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Asthenia/Fatigue</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>54 (53)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>8 (8)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>64 (77)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>12 (14)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Infections</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>47 (46)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>11 (11)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>45 (54)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>27 (33)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Vomiting</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>35 (34)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>43 (52)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>8 (10)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Anorexia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>23 (23)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>45 (54)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (4)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hypomagnesemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>22 (22)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>23 (28)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Diarrhea</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>20 (20)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>22 (27)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (1)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Pyrexia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>20 (20)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>4 (4)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>19 (23)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (1)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Anemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>19 (19)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (3)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>60 (72)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>13 (16)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Thrombocytopenia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>17 (17)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>54 (65)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>12 (14)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Dysgeusia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>15 (15)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>33 (40)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Constipation</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>12 (12)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>2 (2)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>32 (39)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (1)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Neutropenia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>11 (11)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>4 (4)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>47 (57)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>22 (27)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hypotension</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>7 (7)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (3)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>19 (23)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (4)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Pruritus</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>7 (7)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>26 (31)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>5 (6)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hypokalemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>6 (6)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>17 (20)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>2 (2)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Dermatitis/Exfoliative dermatitis</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>4 (4)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>22 (27)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>7 (8)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hypocalcemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>4 (4)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>43 (52)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>5 (6)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Leukopenia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>4 (4)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>38 (46)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>18 (22)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Lymphopenia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>4 (4)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>47 (57)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>31 (37)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Alanine aminotransferase increased</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (3)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>18 (22)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>2 (2)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Aspartate aminotransferase increased</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (3)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>23 (28)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (4)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hypoalbuminemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (3)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>40 (48)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>3 (4)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Electrocardiogram ST-T wave changes</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>2 (2)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>52 (63)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hyperglycemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>2 (2)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>2 (2)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>42 (51)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (1)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hyponatremia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>1 (&lt;1)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>17 (20)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>2 (2)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hypermagnesemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>22 (27)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>7 (8)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Lrule Botrule " valign="top">
+                                          <paragraph>Hypophosphatemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>22 (27)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>8 (10)</paragraph>
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td styleCode="Rrule Botrule Lrule " valign="top">
+                                          <paragraph>Hyperuricemia</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>0</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>27 (33)</paragraph>
+                                       </td>
+                                       <td align="center" styleCode="Rrule Botrule " valign="top">
+                                          <paragraph>7 (8)</paragraph>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_c55e9115-93e6-4c26-a0f0-2833e7c2fd98">
+                           <id root="d3234903-d3d2-4d40-bf91-a7887d3c6819"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="italics">Serious Adverse Reactions</content>
+                           </title>
+                           <text>
+                              <paragraph>Infections were the most common type of SAE reported in both studies with 8 patients (8%) in Study 1 and 26 patients (31%) in Study 2 experiencing a serious infection.  Serious adverse reactions reported in &gt;2% of patients in Study 1 were sepsis and pyrexia (3%).  In Study 2, serious adverse reactions in &gt;2% of patients were fatigue (7%), supraventricular arrhythmia, central line infection, neutropenia (6%), hypotension, hyperuricemia, edema (5%), ventricular arrhythmia, thrombocytopenia, nausea, leukopenia, dehydration, pyrexia, aspartate aminotransferase increased, sepsis, catheter related infection, hypophosphatemia and dyspnea (4%).</paragraph>
+                              <paragraph>There were eight deaths not due to disease progression.  In Study 1, there were two deaths: one due to cardiopulmonary failure and one due to acute renal failure.  There were six deaths in Study 2: four due to infection and one each due to myocardial ischemia and acute respiratory distress syndrome.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_5897b7ae-2eea-4262-96d5-2663c5f44091">
+                           <id root="ef92e8bc-5e81-4ce2-9b92-04631f861d01"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="italics">Discontinuations</content>
+                           </title>
+                           <text>
+                              <paragraph>Discontinuation due to an adverse event occurred in 21% of patients in Study 1 and 11% in Study 2.  Discontinuations occurring in at least 2% of patients in either study included infection, fatigue, dyspnea, QT prolongation, and hypomagnesemia.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_1bf4a2a1-f586-46b0-8256-697b7aac5a73">
+                           <id root="23b2ef12-d147-438a-ae61-0d945e8aa695"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="underline">Other Clinical Trials Experience</content>
+                           </title>
+                           <text>
+                              <paragraph>The following common adverse reactions have been reported following administration of ISTODAX as a single agent in 178 patients with peripheral T-cell lymphoma, for which ISTODAX is not indicated or recommended. The most common adverse reactions (≥30%) included nausea (63%), fatigue (61%), thrombocytopenia (49%), vomiting (39%), neutropenia (39%), pyrexia (38%), diarrhea (36%) and anemia (35%). Other common (≥10%) clinically significant adverse reactions included dysgeusia (22%), headache (20%), cough (19%), dyspnea (15%), abdominal pain (13%) and stomatitis (10%). Grade 3 and higher adverse reactions in ≥10% were hematologic toxicities (including thrombocytopenia, neutropenia, leukopenia and anemia) and fatigue.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S7">
+               <id root="60105b1d-6918-44a9-bc56-5053dd4787a8"/>
+               <code code="34073-7" codeSystem="2.16.840.1.113883.6.1" displayName="DRUG INTERACTIONS SECTION"/>
+               <title>7 DRUG INTERACTIONS</title>
+               <effectiveTime value="20210730"/>
+               <excerpt>
+                  <highlight>
+                     <text>
+                        <list listType="unordered">
+                           <item>
+                              <caption>•</caption>Carefully monitor prothrombin time (PT) and International Normalized Ratio (INR) in patients concurrently administered ISTODAX and warfarin or coumarin derivatives (<linkHtml href="#S7.1">7.1</linkHtml>).</item>
+                           <item>
+                              <caption>•</caption>Monitor for toxicities related to increased romidepsin exposure when co-administering romidepsin with strong CYP3A4 inhibitors (<linkHtml href="#S7.2">7.2</linkHtml>).</item>
+                           <item>
+                              <caption>•</caption>Avoid use with rifampin and strong CYP3A4 inducers (<linkHtml href="#S7.3">7.3</linkHtml>).</item>
+                        </list>
+                     </text>
+                  </highlight>
+               </excerpt>
+               <component>
+                  <section ID="S7.1">
+                     <id root="818ac1aa-93d0-47b5-8fef-5f855cc455ca"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>7.1    Warfarin or Coumarin Derivatives</title>
+                     <text>
+                        <paragraph>Prolongation of PT and elevation of INR were observed in a patient receiving ISTODAX concomitantly with warfarin.  Monitor PT and INR more frequently in patients concurrently receiving ISTODAX and warfarin <content styleCode="italics">[see <linkHtml href="#S12.3">Clinical Pharmacology (12.3)</linkHtml>].</content>
+                        </paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S7.2">
+                     <id root="b28f172a-9d0b-4155-9ec5-a1cfb208f7b5"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>7.2 Drugs That Inhibit CYP3A4 Enzymes</title>
+                     <text>
+                        <paragraph>Strong CYP3A4 inhibitors increase concentrations of romidepsin <content styleCode="italics">[see <linkHtml href="#S12.3">Clinical Pharmacology (12.3)</linkHtml>].</content> Monitor for toxicity related to increased romidepsin exposure and follow the dose modifications for toxicity <content styleCode="italics">[see <linkHtml href="#S2.2">Dosage and Administration (2.2)</linkHtml>]</content> when ISTODAX is initially co-administered with strong CYP3A4 inhibitors.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S7.3">
+                     <id root="b1a8e3c0-8240-4ab8-828d-a8fb6998e2e2"/>
+                     <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                     <title>7.3 Drugs That Induce CYP3A4 Enzymes</title>
+                     <text>
+                        <paragraph>Rifampin (a potent CYP3A4 inducer) increased the concentrations of romidepsin <content styleCode="italics">[see <linkHtml href="#S12.3">Clinical Pharmacology (12.3)</linkHtml>]</content>. Avoid co-administration of ISTODAX with rifampin. The use of other potent CYP3A4 inducers should be avoided when possible.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S8">
+               <id root="f626e7a1-014b-4edd-942d-c96686d3c38c"/>
+               <code code="43684-0" codeSystem="2.16.840.1.113883.6.1" displayName="USE IN SPECIFIC POPULATIONS SECTION"/>
+               <title>8 USE IN SPECIFIC POPULATIONS</title>
+               <effectiveTime value="20210730"/>
+               <component>
+                  <section ID="S8.1">
+                     <id root="af407023-525b-4944-8eca-1a2b0a904bc2"/>
+                     <code code="42228-7" codeSystem="2.16.840.1.113883.6.1" displayName="PREGNANCY SECTION"/>
+                     <title>8.1 Pregnancy</title>
+                     <effectiveTime value="20210730"/>
+                     <component>
+                        <section ID="ID_5b254569-5e9f-42bb-9558-5856c5198cf5">
+                           <id root="ee955be7-bd23-4362-a109-bf8ff03c5a6b"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="underline">Risk Summary</content>
+                              </paragraph>
+                              <paragraph>Based on its mechanism of action and findings from animal studies, ISTODAX can cause embryo-fetal harm when administered to a pregnant woman <content styleCode="italics">[see <linkHtml href="#S12.1">Clinical Pharmacology (12.1)</linkHtml>]</content>.</paragraph>
+                              <paragraph>There are no available data on ISTODAX use in pregnant women to inform a drug associated risk of major birth defects and miscarriage. In an animal reproductive study, romidepsin was embryocidal and caused adverse developmental outcomes including embryo-fetal toxicity and malformations at exposures below those in patients at the recommended dose <content styleCode="italics">(see <linkHtml href="#S8.1">Data</linkHtml>).</content> Advise pregnant women of the potential risk to a fetus and to avoid becoming pregnant while receiving ISTODAX and for at least 1 month after the last dose.</paragraph>
+                              <paragraph>The background risk of major birth defects and miscarriage for the indicated population is unknown. All pregnancies have a background risk of birth defect, loss, or other adverse outcomes. In the U.S. general population, the estimated background risk of major birth defects and miscarriage in clinically recognized pregnancies is 2-4% and 15-20%, respectively.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="Data">
+                           <id root="0ac91680-19ac-493b-9f41-3dd10a874998"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="underline">Data</content>
+                              </paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                           <component>
+                              <section ID="ID_6d167dee-7dfe-4019-8a52-542f8ce64a9f">
+                                 <id root="6e06bfa5-cd15-4932-a5c1-2e0b6cc54b07"/>
+                                 <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                                 <text>
+                                    <paragraph>
+                                       <content styleCode="italics">Animal Data</content>
+                                    </paragraph>
+                                    <paragraph>Romidepsin was administered intravenously to pregnant rats during the period of organogenesis at doses of 0.1, 0.2, or 0.5 mg/kg/day. Substantial resorption or postimplantation loss was observed at the high dose of 0.5 mg/kg/day, a maternally toxic dose. Adverse embryo-fetal effects were noted at romidepsin doses of ≥0.1 mg/kg/day, with systemic exposures (AUC) ≥0.2% of the human exposure at the recommended dose of 14 mg/m<sup>2</sup>/week. Drug-related fetal effects consisted of reduced fetal body weights, folded retina, rotated limbs, and incomplete sternal ossification. </paragraph>
+                                 </text>
+                                 <effectiveTime value="20210730"/>
+                              </section>
+                           </component>
+                        </section>
+                     </component>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S8.2">
+                     <id root="4f97d6c4-bcb8-4ab5-a04d-4f0783e5f048"/>
+                     <code code="77290-5" codeSystem="2.16.840.1.113883.6.1" displayName="LACTATION SECTION"/>
+                     <title>8.2	Lactation</title>
+                     <effectiveTime value="20210730"/>
+                     <component>
+                        <section ID="ID_c839f0ee-450a-4ec6-8b6a-dcc184f6c91e">
+                           <id root="6d77a183-f2ba-44da-a602-cf20ff220969"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="underline">Risk Summary</content>
+                              </paragraph>
+                              <paragraph>There are no data on the presence of ISTODAX or its metabolites in human milk, the effects on the breastfed child, or the effects on milk production. Because many drugs are excreted in human milk and because of the potential for serious adverse reactions in the breastfed child, advise lactating women not to breastfeed during treatment with ISTODAX and for 1 week after the last dose. </paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S8.3">
+                     <id root="307ddb46-945d-464c-86bb-615bbc2ae39c"/>
+                     <code code="77291-3" codeSystem="2.16.840.1.113883.6.1" displayName="FEMALES &amp; MALES OF REPRODUCTIVE POTENTIAL SECTION"/>
+                     <title>8.3	 Females and Males of Reproductive Potential</title>
+                     <text>
+                        <paragraph>ISTODAX can cause fetal harm when administered to a pregnant woman <content styleCode="italics">[see <linkHtml href="#S8.1">Use in Specific Populations (8.1)</linkHtml>]</content>.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                     <component>
+                        <section ID="ID_fdae2395-83e7-45e6-8286-a04a76b5f3b9">
+                           <id root="1d34260e-2533-4df7-85a2-04f88f27911d"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="underline">Pregnancy Testing</content>
+                              </paragraph>
+                              <paragraph>Perform pregnancy testing in females of reproductive potential within 7 days prior to initiating therapy with ISTODAX.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_8687b4be-0544-4de4-87d9-105b8e08d106">
+                           <id root="82001a60-4756-4b21-bbdb-5ffc188a521e"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="underline">Contraception</content>
+                              </paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                           <component>
+                              <section ID="ID_3e218a6e-d122-4fb6-9c91-ee00e0654bf3">
+                                 <id root="14bd655f-bdcd-4bb3-9c1c-22b6e0227ed2"/>
+                                 <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                                 <text>
+                                    <paragraph>
+                                       <content styleCode="italics">Females</content>
+                                    </paragraph>
+                                    <paragraph>Advise females of reproductive potential to use effective contraception during treatment with ISTODAX and for 1 month after the last dose. ISTODAX may reduce the effectiveness of estrogen-containing contraceptives. Therefore, alternative methods of non-estrogen containing contraception (e.g., condoms, intrauterine devices) should be used in patients receiving ISTODAX.</paragraph>
+                                 </text>
+                                 <effectiveTime value="20210730"/>
+                              </section>
+                           </component>
+                           <component>
+                              <section ID="ID_f921c114-4bcf-4d50-9a06-975288a75e2b">
+                                 <id root="85fe545b-42d2-4f9b-8ce9-c8a07d645890"/>
+                                 <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                                 <text>
+                                    <paragraph>
+                                       <content styleCode="italics">Males</content>
+                                    </paragraph>
+                                    <paragraph>Advise males with female partners of reproductive potential to use effective contraception during treatment with ISTODAX and for 1 month after the last dose.</paragraph>
+                                 </text>
+                                 <effectiveTime value="20210730"/>
+                              </section>
+                           </component>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_bf24fbf3-0ee9-4970-992e-d222d962d6c4">
+                           <id root="09af8c29-0821-4897-8e4b-f507b9763b7f"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="underline">Infertility</content>
+                              </paragraph>
+                              <paragraph>Based on findings in animals, romidepsin has the potential to affect male and female fertility <content styleCode="italics">[see <linkHtml href="#S13.1">Nonclinical Toxicology (13.1)</linkHtml>].</content>
+                              </paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S8.4">
+                     <id root="829a6040-8365-4005-9b69-462ce4b0b786"/>
+                     <code code="34081-0" codeSystem="2.16.840.1.113883.6.1" displayName="PEDIATRIC USE SECTION"/>
+                     <title>8.4 Pediatric Use</title>
+                     <text>
+                        <paragraph>The safety and effectiveness of ISTODAX in pediatric patients have not been established.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S8.5">
+                     <id root="67f035b7-24d9-44a3-a92a-951814fc0684"/>
+                     <code code="34082-8" codeSystem="2.16.840.1.113883.6.1" displayName="GERIATRIC USE SECTION"/>
+                     <title>8.5 Geriatric Use</title>
+                     <text>
+                        <paragraph>Of the 186 patients with CTCL who received ISTODAX in clinical studies, 51 (28%) were 65 years of age and older, while 16 (9%) were 75 years of age. No overall differences in safety or effectiveness were observed between patients 65 years or age and over and younger patients; however, greater sensitivity of some older individuals cannot be ruled out.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S8.6">
+                     <id root="3b44af1d-f642-4ced-9a13-d06c0e597dbf"/>
+                     <code code="88829-7" codeSystem="2.16.840.1.113883.6.1" displayName="HEPATIC IMPAIRMENT SUBSECTION"/>
+                     <title>8.6 Hepatic Impairment</title>
+                     <text>
+                        <paragraph>In a hepatic impairment study, ISTODAX was evaluated in 19 patients with advanced cancer and mild (8), moderate (5), or severe (6) hepatic impairment. There were 4 deaths during the first cycle of treatment: 1 patient with mild hepatic impairment, 1 patient with moderate hepatic impairment, and 2 patients with severe hepatic impairment. No dose adjustments are recommended for patients with mild hepatic impairment. Reduce the ISTODAX starting dose for patients with moderate and severe hepatic impairment <content styleCode="italics">[see <linkHtml href="#S2.3">Dosage and Administration (2.3)</linkHtml> and <linkHtml href="#S12.3">Clinical Pharmacology (12.3)</linkHtml>].</content> Monitor patients with hepatic impairment more frequently for toxicity, especially during the first cycle of therapy.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S10">
+               <id root="e5a7d370-f5c2-411d-87f6-509b71a39c5f"/>
+               <code code="34088-5" codeSystem="2.16.840.1.113883.6.1" displayName="OVERDOSAGE SECTION"/>
+               <title>10 OVERDOSAGE</title>
+               <text>
+                  <paragraph>No specific information is available on the treatment of overdosage of ISTODAX.</paragraph>
+                  <paragraph>Toxicities in a single-dose study in rats or dogs, at intravenous romidepsin doses up to 2.2-fold the recommended human dose based on the body surface area, included irregular respiration, irregular heartbeat, staggering gait, tremor, and tonic convulsions.</paragraph>
+                  <paragraph>In the event of an overdose, it is reasonable to employ the usual supportive measures, e.g., clinical monitoring and supportive therapy, if required.  There is no known antidote for ISTODAX and it is not known if ISTODAX is dialyzable.</paragraph>
+               </text>
+               <effectiveTime value="20210730"/>
+            </section>
+         </component>
+         <component>
+            <section ID="S11">
+               <id root="5289e39d-678c-4bb5-a41a-9b10539221c5"/>
+               <code code="34089-3" codeSystem="2.16.840.1.113883.6.1" displayName="DESCRIPTION SECTION"/>
+               <title>11 DESCRIPTION</title>
+               <text>
+                  <paragraph>Romidepsin, a histone deacetylase (HDAC) inhibitor, is a bicyclic depsipeptide.  At room temperature, romidepsin is a white powder and is described chemically as (1<content styleCode="italics">S</content>,4<content styleCode="italics">S</content>,7<content styleCode="italics">Z</content>,10<content styleCode="italics">S</content>,16<content styleCode="italics">E</content>,21<content styleCode="italics">R</content>)-7-ethylidene-4,21-bis(1-methylethyl)-2-oxa-12,13-dithia-5,8,20,23-tetraazabicyclo[8.7.6]tricos-16-ene-3,6,9,19,22-pentone.  The empirical formula is C<sub>24</sub>H<sub>36</sub>N<sub>4</sub>O<sub>6</sub>S<sub>2</sub>.</paragraph>
+                  <paragraph>The molecular weight is 540.71 and the structural formula is:</paragraph>
+                  <renderMultiMedia ID="id739911556" referencedObject="ID_7571fd15-3462-42c5-9a2f-60dafcfffbbd"/>
+                  <paragraph>ISTODAX (romidepsin) for injection is intended for intravenous infusion only after reconstitution with the supplied diluent and after further dilution with 0.9% Sodium Chloride, USP.</paragraph>
+                  <paragraph>ISTODAX is supplied as a kit containing 2 vials.</paragraph>
+                  <paragraph>ISTODAX (romidepsin) for injection is a sterile lyophilized white powder and is supplied in a 10 mg single-dose vial containing 11 mg romidepsin, 22 mg povidone, USP, and hydrochloric acid, NF, as a pH adjuster.</paragraph>
+                  <paragraph>Diluent for ISTODAX is a sterile clear solution and is supplied in a single-dose vial containing 2.4 mL (2.2 mL deliverable volume). Diluent for ISTODAX contains 80% (v/v) propylene glycol, USP and 20% (v/v) dehydrated alcohol, USP.</paragraph>
+               </text>
+               <effectiveTime value="20210730"/>
+               <component>
+                  <observationMedia ID="ID_7571fd15-3462-42c5-9a2f-60dafcfffbbd">
+                     <text>Chemical Structure</text>
+                     <value mediaType="image/jpeg" xsi:type="ED">
+                        <reference value="istodax-01.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S12">
+               <id root="329afabd-9af6-4b6b-b730-a84941f1b12d"/>
+               <code code="34090-1" codeSystem="2.16.840.1.113883.6.1" displayName="CLINICAL PHARMACOLOGY SECTION"/>
+               <title>12 CLINICAL PHARMACOLOGY</title>
+               <effectiveTime value="20210730"/>
+               <component>
+                  <section ID="S12.1">
+                     <id root="7a973f44-8c9a-4c7f-b0c7-0893d2f8a7bc"/>
+                     <code code="43679-0" codeSystem="2.16.840.1.113883.6.1" displayName="MECHANISM OF ACTION SECTION"/>
+                     <title>12.1   Mechanism of Action</title>
+                     <text>
+                        <paragraph>Romidepsin is a histone deacetylase (HDAC) inhibitor.  HDACs catalyze the removal of acetyl groups from acetylated lysine residues in histones, resulting in the modulation of gene expression.  HDACs also deacetylate non-histone proteins, such as transcription factors. In vitro, romidepsin causes the accumulation of acetylated histones, and induces cell cycle arrest and apoptosis of some cancer cell lines with IC<sub>50</sub> values in the nanomolar range.  The mechanism of the antineoplastic effect of romidepsin observed in nonclinical and clinical studies has not been fully characterized.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S12.2">
+                     <id root="d016c460-96f6-4b4c-9b39-f224339e16be"/>
+                     <code code="43681-6" codeSystem="2.16.840.1.113883.6.1" displayName="PHARMACODYNAMICS SECTION"/>
+                     <title>12.2 Pharmacodynamics</title>
+                     <text>
+                        <paragraph>
+                           <content styleCode="italics">Cardiac Electrophysiology</content>
+                        </paragraph>
+                        <paragraph>At doses of 14 mg/m<sup>2</sup> as a 4-hour intravenous infusion, and at doses of 8 (0.57 times the recommended dose), 10 (0.71 times the recommended dose) or 12 (0.86 times the recommended dose) mg/m<sup>2</sup> as a 1-hour infusion, no large changes in the mean QTc interval (&gt;20 milliseconds) from baseline based on Fridericia correction method were detected. Small increase in mean QT interval (&lt; 10 milliseconds) and mean QT interval increase between 10 to 20 milliseconds cannot be excluded. </paragraph>
+                        <paragraph>Romidepsin was associated with a delayed concentration-dependent increase in heart rate in patients with advanced cancer with a maximum mean increase in heart rate of 20 beats per minute occurring at the 6-hour time point after start of romidepsin infusion for patients receiving 14 mg/m<sup>2</sup> as a 4-hour infusion.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="S12.3">
+                     <id root="2d4a84d7-22fe-4435-ba7b-b7cc9000e077"/>
+                     <code code="43682-4" codeSystem="2.16.840.1.113883.6.1" displayName="PHARMACOKINETICS SECTION"/>
+                     <title>12.3 Pharmacokinetics</title>
+                     <text>
+                        <paragraph>In patients with T-cell lymphomas who received 14 mg/m<sup>2</sup> of romidepsin intravenously over a 4-hour period on days 1, 8, and 15 of a 28-day cycle, geometric mean values of the maximum plasma concentration (C<sub>max</sub>) and the area under the plasma concentration versus time curve (AUC<sub>0-∞</sub>) were 377 ng/mL and 1549 ng*hr/mL, respectively. Romidepsin exhibited linear pharmacokinetics across doses ranging from 1.0 (0.07 times the recommended dose) to 24.9 (1.76 times the recommended dose) mg/m<sup>2</sup> when administered intravenously over 4 hours in patients with advanced cancers.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                     <component>
+                        <section ID="ID_c15d6839-38b0-43e4-b3d8-26faf07f1603">
+                           <id root="0268ebb1-9539-4f77-8b37-2108bb928aab"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="italics">Distribution</content>
+                           </title>
+                           <text>
+                              <paragraph>Romidepsin is highly protein bound in plasma (92% to 94%) over the concentration range of 50 ng/mL to 1000 ng/mL with α1-acid-glycoprotein (AAG) being the principal binding protein. Romidepsin is a substrate of the efflux transporter P-glycoprotein (P-gp, ABCB1). </paragraph>
+                              <paragraph>In vitro, romidepsin accumulates into human hepatocytes via an unknown active uptake process.  Romidepsin is not a substrate of the following uptake transporters: BCRP, BSEP, MRP2, OAT1, OAT3, OATP1B1, OATP1B3, or OCT2. In addition, romidepsin is not an inhibitor of BCRP, MRP2, MDR1 or OAT3. Although romidepsin did not inhibit OAT1, OCT2, and OATP1B3 at concentrations seen clinically (1 μmol/L), modest inhibition was observed at 10 µmol/L. Romidepsin was found to be an inhibitor of BSEP and OATP1B1.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_a837e316-0cc2-4f8a-97c0-4dfbe9dbdbe1">
+                           <id root="b420d31e-1d52-4fec-a9ed-04bcc1e1da4e"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="italics">Metabolism</content>
+                           </title>
+                           <text>
+                              <paragraph>Romidepsin undergoes extensive metabolism in vitro primarily by CYP3A4 with minor contribution from CYP3A5, CYP1A1, CYP2B6, and CYP2C19.  At therapeutic concentrations, romidepsin did not competitively inhibit CYP1A2, CYP2C9, CYP2C19, CYP2D6, CYP2E1, or CYP3A4 in vitro.</paragraph>
+                              <paragraph>At therapeutic concentrations, romidepsin did not cause notable induction of CYP1A2, CYP2B6 and CYP3A4 in vitro. Therefore, pharmacokinetic drug-drug interactions are unlikely to occur due to CYP450 induction or inhibition by romidepsin when co-administered with CYP450 substrates.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_01d046fd-f797-4048-acb9-05f82a862437">
+                           <id root="a48128ab-9f52-45bf-a705-95c270bdd57f"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="italics">Excretion</content>
+                           </title>
+                           <text>
+                              <paragraph>Following 4-hour intravenous administration of romidepsin at 14 mg/m<sup>2</sup> on days 1, 8, and 15 of a 28-day cycle in patients with T-cell lymphomas, the terminal half-life (t<sub>½</sub>) was approximately 3 hours.  No accumulation of plasma concentration of romidepsin was observed after repeated dosing.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_ecdecbe6-ce45-49e8-be7f-57c855bb018c">
+                           <id root="a388c87b-f62b-4a26-a2b8-f72ce17ce5a4"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="italics">Drug Interactions</content>
+                           </title>
+                           <text>
+                              <paragraph>Ketoconazole: Following co-administration of 8 mg/m<sup>2</sup> ISTODAX (4-hour infusion) with ketoconazole, the overall romidepsin exposure was increased by approximately 25% and 10% for AUC<sub>0-∞</sub> and C<sub>max</sub>, respectively, compared to romidepsin alone, and the difference in AUC<sub>0-∞</sub> between the 2 treatments was statistically significant. </paragraph>
+                              <paragraph>Rifampin: Following co-administration of 14 mg/m<sup>2</sup> ISTODAX (4-hour infusion) with rifampin, the overall romidepsin exposure was increased by approximately 80% and 60% for AUC<sub>0-∞</sub> and C<sub>max</sub>, respectively, compared to romidepsin alone, and the difference between the 2 treatments was statistically significant. Co-administration of rifampin decreased the romidepsin clearance and volume of distribution by 44% and 52%, respectively. The increase in exposure seen after co-administration with rifampin is likely due to rifampin's inhibition of an undetermined hepatic uptake process that is predominant for the disposition of ISTODAX<content styleCode="italics">.</content>
+                              </paragraph>
+                              <paragraph>Drugs that inhibit P-glycoprotein: Drugs that inhibit p-glycoprotein may increase the concentration of romidepsin.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_58323b5e-8f14-405c-8eaf-af1edad0acd8">
+                           <id root="bb8c17ee-ea41-4f61-a479-54efa97abb5d"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <title>
+                              <content styleCode="bold">
+                                 <content styleCode="italics">Specific Populations</content>
+                              </content>
+                           </title>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="italics">Effect of Age, Gender, Race or Renal Impairment</content>
+                              </paragraph>
+                              <paragraph>The pharmacokinetics of romidepsin was not influenced by age (27 to 83 yrs), gender, race (white vs<content styleCode="italics">.</content> black) or mild (estimated creatinine clearance 50 - 80 mL/min), moderate (estimated creatinine clearance 30-50 mL/min), or severe (estimated creatinine clearance &lt;30 mL/min) renal impairment. The effect of end-stage renal disease (estimated creatine clearance less than 15 mL/min) on romidepsin pharmacokinetics has not been studied.</paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                     <component>
+                        <section ID="ID_2be614b7-8fcb-4193-925d-e8266171fb58">
+                           <id root="40644043-c94d-4ee9-9a6d-c3a6d3753b62"/>
+                           <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+                           <text>
+                              <paragraph>
+                                 <content styleCode="italics">Hepatic Impairment</content>
+                              </paragraph>
+                              <paragraph>Romidepsin clearance decreased with increased severity of hepatic impairment. In patients with cancer, the geometric mean C<sub>max</sub> values after administration of 14, 7, and 5 mg/m<sup>2</sup> romidepsin in patients with mild (B1: bilirubin ≤ULN and AST &gt;ULN; B2: bilirubin &gt;ULN but ≤1.5 × ULN and any AST), moderate (bilirubin &gt;1.5 × ULN to ≤3 × ULN and any AST), and severe (bilirubin &gt;3 × ULN and any AST) hepatic impairment were approximately 111%, 96%, and 86% of the corresponding value after administration of 14 mg/m<sup>2</sup> romidepsin in patients with normal  (bilirubin ≤upper limit of normal (ULN) and aspartate aminotransferase (AST) ≤ULN) hepatic function, respectively. The geometric mean AUC<sub>inf</sub> values in patients with mild, moderate, and severe hepatic impairment were approximately 144%, 114%, and 116% of the corresponding value in patients with normal hepatic function, respectively. Among these 4 cohorts, moderate interpatient variability was noted for the exposure parameters C<sub>max</sub> and AUC<sub>inf</sub>, as the coefficient of variation (CV) ranged from 30% to 54%. </paragraph>
+                           </text>
+                           <effectiveTime value="20210730"/>
+                        </section>
+                     </component>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S13">
+               <id root="7359b28c-bed1-47d7-a1b2-492483c9b4ea"/>
+               <code code="43680-8" codeSystem="2.16.840.1.113883.6.1" displayName="NONCLINICAL TOXICOLOGY SECTION"/>
+               <title>13 NONCLINICAL TOXICOLOGY</title>
+               <effectiveTime value="20210730"/>
+               <component>
+                  <section ID="S13.1">
+                     <id root="fc6f85a4-f358-4c94-9ebc-51fd098e105e"/>
+                     <code code="34083-6" codeSystem="2.16.840.1.113883.6.1" displayName="CARCINOGENESIS &amp; MUTAGENESIS &amp; IMPAIRMENT OF FERTILITY SECTION"/>
+                     <title>13.1  Carcinogenesis, Mutagenesis, Impairment of Fertility</title>
+                     <text>
+                        <paragraph>Carcinogenicity studies have not been performed with romidepsin.  Romidepsin was not mutagenic in vitro in the bacterial reverse mutation assay (Ames test) or the mouse lymphoma assay.  Romidepsin was not clastogenic in an in vivo rat bone marrow micronucleus assay when tested to the maximum tolerated dose (MTD) of 1 mg/kg in males and 3 mg/kg in females (6 and 18 mg/m<sup>2</sup> in males and females, respectively).  These doses were up to 1.3-fold the recommended human dose, based on body surface area.</paragraph>
+                        <paragraph>Based on nonclinical findings, male and female fertility may be compromised by treatment with ISTODAX.  In a 26-week toxicology study, romidepsin administration resulted in testicular degeneration in rats at 0.33 mg/kg/dose (2 mg/m<sup>2</sup>/dose) following the clinical dosing schedule.  This dose resulted in AUC<sub>0-∞</sub> values that were approximately 2% the exposure level in patients receiving the recommended dose of 14 mg/m<sup>2</sup>/dose.  A similar effect was seen in mice after 4 weeks of drug administration at higher doses.  Seminal vesicle and prostate organ weights were decreased in a separate study in rats after 4 weeks of daily drug administration at 0.1 mg/kg/day (0.6 mg/m<sup>2</sup>/day), approximately 30% the estimated human daily dose based on body surface area.  Romidepsin showed high affinity for binding to estrogen receptors in pharmacology studies.  In a 26-week toxicology study in rats, atrophy was seen in the ovary, uterus, vagina and mammary gland of females administered doses as low as 0.1 mg/kg/dose (0.6 mg/m<sup>2</sup>/dose) following the clinical dosing schedule.  This dose resulted in AUC<sub>0-∞</sub> values that were 0.3% of those in patients receiving the recommended dose of 14 mg/m<sup>2</sup>/dose.  Maturation arrest of ovarian follicles and decreased weight of ovaries were observed in a separate study in rats after 4 weeks of daily drug administration at 0.1 mg/kg/day (0.6 mg/m<sup>2</sup>/day).  This dose is approximately 30% the estimated human daily dose based on body surface area.</paragraph>
+                     </text>
+                     <effectiveTime value="20210730"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="S14">
+               <id root="ae8cee7c-bb05-4deb-ae6e-76b394679ce3"/>
+               <code code="34092-7" codeSystem="2.16.840.1.113883.6.1" displayName="CLINICAL STUDIES SECTION"/>
+               <title>14 CLINICAL STUDIES</title>
+               <text>
+                  <paragraph>ISTODAX was evaluated in 2 multicenter, single-arm clinical studies in patients with CTCL (Study 1 [NCT00106431] and Study 2 [NCT00007345]).  Overall, 167 patients with CTCL were treated in the US, Europe, and Australia.  Study 1 included 96 patients with confirmed CTCL after failure of at least 1 prior systemic therapy.  Study 2 included 71 patients with a primary diagnosis of CTCL who received at least 2 prior skin directed therapies or one or more systemic therapies.  Patients were treated with ISTODAX at a starting dose of 14 mg/m<sup>2</sup> infused over 4 hours on days 1, 8, and 15 every 28 days.</paragraph>
+                  <paragraph>In both studies, patients could be treated until disease progression at the discretion of the investigator and local regulators.  Objective disease response was evaluated according to a composite endpoint that included assessments of skin involvement, lymph node and visceral involvement, and abnormal circulating T-cells ("Sézary cells").</paragraph>
+                  <paragraph>The primary efficacy endpoint for both studies was overall objective disease response rate (ORR) based on the investigator assessments, and was defined as the proportion of patients with confirmed complete response (CR) or partial response (PR).  CR was defined as no evidence of disease and PR as ≥ 50% improvement in disease.  Secondary endpoints in both studies included duration of response and time to response.</paragraph>
+                  <paragraph>
+                     <content styleCode="bold">Baseline Patient Characteristics</content>
+                  </paragraph>
+                  <paragraph>Demographic and disease characteristics of the patients in Study 1 and Study 2 are provided in Table 3.</paragraph>
+                  <table width="100%">
+                     <caption>Table 3. Baseline Patient Characteristics (CTCL Population)</caption>
+                     <col width="50%"/>
+                     <col width="25%"/>
+                     <col width="25%"/>
+                     <tbody>
+                        <tr>
+                           <td align="center" styleCode="Rrule Botrule Lrule Toprule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">Characteristic</content>
+                              </paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule Toprule " valign="middle">
+                              <paragraph>
+                                 <content styleCode="bold">Study 1</content>
+                                 <br/>
+                                 <content styleCode="bold">(N=96)</content>
+                              </paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule Toprule " valign="middle">
+                              <paragraph>
+                                 <content styleCode="bold">Study 2</content>
+                                 <br/>
+                                 <content styleCode="bold">(N=71)</content>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule Botrule " valign="top">
+                              <paragraph>Age </paragraph>
+                           </td>
+                           <td styleCode="Botrule " valign="middle"/>
+                           <td styleCode="Rrule Botrule " valign="middle"/>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  N</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>96</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>71</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  Mean (SD)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>57 (12)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>56 (13)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  Median (Range)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>57 (21, 89)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>57 (28, 84)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule Botrule " valign="top">
+                              <paragraph>Sex, n (%)</paragraph>
+                           </td>
+                           <td styleCode="Botrule " valign="middle"/>
+                           <td styleCode="Rrule Botrule " valign="middle"/>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  Men</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>59 (61)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>48 (68)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  Women</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>37 (39)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>23 (32)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule Botrule " valign="top">
+                              <paragraph>Race, n (%)</paragraph>
+                           </td>
+                           <td styleCode="Botrule " valign="middle"/>
+                           <td styleCode="Rrule Botrule " valign="middle"/>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  White</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>90 (94)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>55 (77)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  Black</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>5 (5)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>15 (21)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  Other/Not Reported</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>1 (1)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>1 (1)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule Botrule " valign="top">
+                              <paragraph>Stage of Disease at Study Entry, n (%)</paragraph>
+                           </td>
+                           <td styleCode="Botrule " valign="middle"/>
+                           <td styleCode="Rrule Botrule " valign="middle"/>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  IA</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>0 (0)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>1 (1)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  IB</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>15 (16)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>6 (9)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  IIA</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>13 (14)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>2 (3)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  IIB</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>21 (22)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>14 (20)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  III</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>23 (24)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>9 (13)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  IVA</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>24 (25)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>27 (38)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>  IVB</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>0 (0)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>12 (17)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule Botrule " valign="top">
+                              <paragraph>Number of Prior Skin-Directed Therapies</paragraph>
+                           </td>
+                           <td styleCode="Botrule " valign="middle"/>
+                           <td styleCode="Rrule Botrule " valign="middle"/>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule Botrule " valign="top">
+                              <paragraph>  Median (Range)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>2 (0, 6)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>1 (0, 3)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule Botrule " valign="top">
+                              <paragraph>Number of Prior Systemic Therapies</paragraph>
+                           </td>
+                           <td styleCode="Botrule " valign="middle"/>
+                           <td styleCode="Rrule Botrule " valign="middle"/>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Botrule Lrule " valign="top">
+                              <paragraph>  Median (Range)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>2 (1, 8)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>2 (0, 7)</paragraph>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <paragraph>
+                     <content styleCode="bold">Clinical Results</content>
+                  </paragraph>
+                  <paragraph>Efficacy outcomes for CTCL patients are provided in Table 4.  Median time to first response was 2 months (range 1 to 6) in both studies.  Median time to CR was 4 months in Study 1 and 6 months in Study 2 (range 2 to 9).</paragraph>
+                  <table width="450pt">
+                     <caption>Table 4. Clinical Results for CTCL Patients</caption>
+                     <col width="47%"/>
+                     <col width="24%"/>
+                     <col width="24%"/>
+                     <tbody>
+                        <tr>
+                           <td styleCode="Rrule Botrule Lrule Toprule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">Response Rate</content>
+                              </paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule Toprule " valign="middle">
+                              <paragraph>
+                                 <content styleCode="bold">Study 1</content>
+                                 <br/>
+                                 <content styleCode="bold">(N=96)</content>
+                              </paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule Toprule " valign="middle">
+                              <paragraph>
+                                 <content styleCode="bold">Study 2</content>
+                                 <br/>
+                                 <content styleCode="bold">(N=71)</content>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Toprule Botrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">ORR </content>(CR + PR),  n (%)<br/> [95% Confidence Interval]</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Toprule Botrule " valign="middle">
+                              <paragraph>33 (34)<br/> [25, 45]</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Toprule Botrule " valign="middle">
+                              <paragraph>25 (35)<br/> [25, 49]</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>            CR, n (%)<br/>            [95% Confidence Interval]</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>6 (6)<br/> [2, 13]</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>4 (6)<br/> [2, 14]</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>            PR, n (%)<br/>            [95% Confidence Interval]</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>27 (28)<br/> [19, 38]</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>21 (30)<br/> [20, 43]</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3" styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">Duration of Response (months)</content>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>            N</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>33</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Botrule " valign="middle">
+                              <paragraph>25</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Rrule Lrule Toprule Botrule " valign="top">
+                              <paragraph>            Median (range)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Toprule Botrule " valign="middle">
+                              <paragraph>15 (1, 20*)</paragraph>
+                           </td>
+                           <td align="center" styleCode="Rrule Toprule Botrule " valign="middle">
+                              <paragraph>11 (1, 66*)</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3" styleCode="Toprule " valign="top">
+                              <paragraph>    *Denotes censored value.</paragraph>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <effectiveTime value="20210730"/>
+            </section>
+         </component>
+         <component>
+            <section ID="S15">
+               <id root="19c64c7c-1b96-4ead-a29e-cac3f71ab78d"/>
+               <code code="34093-5" codeSystem="2.16.840.1.113883.6.1" displayName="REFERENCES SECTION"/>
+               <title>15 REFERENCES</title>
+               <text>
+                  <list listType="ordered">
+                     <item>
+                        <caption>1.</caption>OSHA Hazardous Drugs. <content styleCode="italics">OSHA</content>. [Accessed on 09/11/2018, from http://www.osha.gov/SLTC/hazardousdrugs/index.html]</item>
+                  </list>
+               </text>
+               <effectiveTime value="20210730"/>
+            </section>
+         </component>
+         <component>
+            <section ID="S16">
+               <id root="3d33c9a4-233f-448a-ac7b-d6f0425f1d29"/>
+               <code code="34069-5" codeSystem="2.16.840.1.113883.6.1" displayName="HOW SUPPLIED SECTION"/>
+               <title>16 HOW SUPPLIED/STORAGE AND HANDLING</title>
+               <text>
+                  <paragraph>
+                     <content styleCode="underline">How Supplied</content>
+                  </paragraph>
+                  <paragraph>ISTODAX is supplied as a kit including a sterile, lyophilized powder in a 10 mg single-dose vial containing 11 mg of romidepsin, 22 mg of the bulking agent, 	povidone, USP, and hydrochloric acid, NF, as a pH adjuster. In addition, each kit includes a single-dose sterile diluent vial containing 2.4 mL (2.2 mL deliverable volume) of 80% propylene glycol, USP, and 20% dehydrated alcohol, USP.</paragraph>
+                  <paragraph>
+                     <content styleCode="bold">NDC 59572-984-01: </content>ISTODAX<sup>®</sup> KIT containing 1 vial of romidepsin and 1 vial of diluent for romidepsin per carton.</paragraph>
+                  <paragraph>
+                     <content styleCode="underline">Storage and Handling</content>
+                  </paragraph>
+                  <paragraph>ISTODAX (romidepsin) for injection is supplied as a kit containing 2 vials in a single carton.  The carton must be stored at 20° to 25°C, excursions permitted between 15° to 30°C. (See USP Controlled Room Temperature.)</paragraph>
+                  <paragraph>ISTODAX is a hazardous drug. Follow applicable special handling and disposal procedures.<sup>1</sup>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20230131"/>
+            </section>
+         </component>
+         <component>
+            <section ID="S17">
+               <id root="ed4ab667-38df-4a11-8ceb-848d1596f2db"/>
+               <code code="34076-0" codeSystem="2.16.840.1.113883.6.1" displayName="INFORMATION FOR PATIENTS SECTION"/>
+               <title>17 PATIENT COUNSELING INFORMATION</title>
+               <text>
+                  <paragraph>Advise the patient to read the FDA-approved patient labeling (<linkHtml href="#_Refpatinfo">Patient Information</linkHtml>).</paragraph>
+                  <paragraph>
+                     <content styleCode="underline">Low Blood Counts</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise patients that treatment with ISTODAX can cause low blood counts and that frequent monitoring of hematologic parameters is required.  Patients should be instructed to report fever or other signs of infection, significant fatigue, shortness of breath, or bleeding  <content styleCode="italics">[see <linkHtml href="#S5.1">Warnings and Precautions (5.1)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>
+                     <content styleCode="underline">Infections</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise patients that infections may occur during treatment with ISTODAX.  Advise patients to report fever, cough, shortness of breath with or without chest pain, burning on urination, flu-like symptoms, muscle aches, or worsening skin problems.  Advise patients to report any previous history of hepatitis B before starting romidepsin <content styleCode="italics">[see <linkHtml href="#S5.2">Warnings and Precautions (5.2)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>
+                     <content styleCode="underline">Tumor Lysis Syndrome</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise patients of the risk of tumor lysis syndrome (especially those with advanced stage disease and/or high tumor burden) to maintain high fluid intake for at least 72 hours after each dose <content styleCode="italics">[see <linkHtml href="#S5.4">Warnings and Precautions (5.4)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>
+                     <content styleCode="underline">Nausea and Vomiting</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise patients that nausea and vomiting are common following treatment with ISTODAX. Prophylactic antiemetics are recommended for all patients. Advise patients to report these symptoms so that appropriate treatment can be instituted <content styleCode="italics">[see <linkHtml href="#S6.1">Adverse Reactions (6.1)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>
+                     <content styleCode="underline">Embryo-Fetal Toxicity</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise patients that ISTODAX can cause fetal harm when administered during pregnancy <content styleCode="italics">[see <linkHtml href="#S5.5">Warnings and Precautions (5.5)</linkHtml> and <linkHtml href="#S8.1">Use in Specific Populations (8.1)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>
+                     <content styleCode="underline">Contraception</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise females of reproductive potential to use effective contraception during treatment with ISTODAX and for 1 month after the last dose. Advise males with female partners of reproductive potential to use effective contraception during treatment with ISTODAX and for 1 month after the last dose <content styleCode="italics">[<linkHtml href="#S8.3">Use in Specific Populations (8.3)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>
+                     <content styleCode="underline">Lactation</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise lactating women not to breastfeed during treatment with ISTODAX and for 1 week after the last dose <content styleCode="italics">[see <linkHtml href="#S8.2">Use in Specific Populations (8.2)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>
+                     <content styleCode="underline">Infertility</content>
+                  </paragraph>
+                  <list listType="ordered">
+                     <item>
+                        <caption> </caption>Advise females and males of reproductive potential that ISTODAX may cause infertility <content styleCode="italics">[see <linkHtml href="#S13.1">Nonclinical Toxicology (13.1)</linkHtml>].</content>
+                     </item>
+                  </list>
+                  <paragraph>   </paragraph>
+                  <paragraph>Marketed by:<br/>Bristol-Myers Squibb Company<br/>Princeton, NJ 08543 USA</paragraph>
+                  <paragraph>ISTODAX<sup>®</sup> is a trademark of Celgene Corporation, a Bristol-Myers Squibb company.</paragraph>
+                  <paragraph>ISTBAXPI.011/PPI.011</paragraph>
+               </text>
+               <effectiveTime value="20230131"/>
+            </section>
+         </component>
+         <component>
+            <section ID="patinfo">
+               <id root="59d13f84-f0a0-4d6e-81c7-24865980eef7"/>
+               <code code="42230-3" codeSystem="2.16.840.1.113883.6.1" displayName="SPL PATIENT PACKAGE INSERT SECTION"/>
+               <text>
+                  <table width="100%">
+                     <col width="6%"/>
+                     <col width="47%"/>
+                     <col width="24%"/>
+                     <col width="22%"/>
+                     <tbody>
+                        <tr>
+                           <td align="center" colspan="4" styleCode="Rrule Botrule Lrule Toprule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">PATIENT INFORMATION</content>
+                                 <br/>ISTODAX (ISS toe dax)<br/>(romidepsin)<br/>for injection</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">What is ISTODAX?</content>
+                                 <br/>ISTODAX is a prescription medicine used to treat people with a type of cancer called cutaneous T-cell lymphoma (CTCL) after at least one other type of medicine by mouth or injection has been tried.<br/>
+                                 <content styleCode="bold">It is not known if ISTODAX is safe and effective in children under 18 years of age.</content>
+                              </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">Before receiving ISTODAX, tell your healthcare provider about all of your medical conditions, including if you:</content>
+                              </paragraph>
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>•</caption>have any heart problems, including an irregular or fast heartbeat, or a condition called QT prolongation. </item>
+                                 <item>
+                                    <caption>•</caption>have kidney problems </item>
+                                 <item>
+                                    <caption>•</caption>have liver problems, including a history of hepatitis B </item>
+                                 <item>
+                                    <caption>•</caption>have problems with the amount of potassium or magnesium in your blood</item>
+                                 <item>
+                                    <caption>•</caption>have nausea, vomiting, or diarrhea</item>
+                                 <item>
+                                    <caption>•</caption>are pregnant or plan to become pregnant. ISTODAX may harm your unborn baby.<list listType="unordered">
+                                       <item>
+                                          <caption>o</caption>
+                                          <content styleCode="bold">Females who are able to become pregnant:</content>
+                                          <list listType="unordered">
+                                             <item>
+                                                <caption>▪</caption>Your healthcare provider will perform a pregnancy test within 7 days before you start treatment with ISTODAX.</item>
+                                             <item>
+                                                <caption>▪</caption>You should avoid becoming pregnant during treatment with ISTODAX and for 1 month after the last dose.</item>
+                                             <item>
+                                                <caption>▪</caption>You should use effective birth control (contraception) during treatment with ISTODAX and for 1 month after your last dose. </item>
+                                             <item>
+                                                <caption>▪</caption>ISTODAX may affect the way estrogen-containing birth control works. Talk to your healthcare provider for more information about other types of birth control to use during treatment with ISTODAX.</item>
+                                             <item>
+                                                <caption>▪</caption>Tell your healthcare provider right away if you become pregnant or think you may be pregnant during treatment with ISTODAX. </item>
+                                          </list>
+                                       </item>
+                                       <item>
+                                          <caption>o</caption>
+                                          <content styleCode="bold">Males with a female sexual partner who can become pregnant:</content>
+                                          <list listType="unordered">
+                                             <item>
+                                                <caption>▪</caption>ISTODAX can harm the unborn baby of your partner. </item>
+                                             <item>
+                                                <caption>▪</caption>You should use a condom and avoid fathering a child during treatment with ISTODAX and for 1 month after treatment with ISTODAX. Talk to your healthcare provider if this is a concern for you.</item>
+                                          </list>
+                                       </item>
+                                       <item>
+                                          <caption>o</caption>
+                                          <content styleCode="bold">ISTODAX may cause fertility problems in males and females. Talk to your healthcare provider if this is a concern for you.</content>
+                                       </item>
+                                    </list>
+                                 </item>
+                                 <item>
+                                    <caption>•</caption>are breastfeeding or plan to breastfeed. It is not known if ISTODAX passes into your breast milk. You should not breastfeed during treatment with ISTODAX and for 1 week after the last dose. Talk to your healthcare provider about the best way to feed your baby while you are being treated with ISTODAX.</item>
+                              </list>
+                              <paragraph>
+                                 <content styleCode="bold">Tell your healthcare provider about all of the medicines you take,</content> including prescription and over-the-counter medicines, vitamins, and herbal supplements.<br/>Some medicines may affect how ISTODAX works, or ISTODAX may affect how other medicines work. Especially tell your healthcare provider if you take or use: </paragraph>
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>o</caption>warfarin sodium (Coumadin, Jantoven) or any other blood thinner medicine. Ask your healthcare provider if you are not sure if you are taking a blood thinner. Your healthcare provider may want to test your blood more often. </item>
+                                 <item>
+                                    <caption>o</caption>a medicine to treat abnormal heartbeats</item>
+                                 <item>
+                                    <caption>o</caption>St. John's wort (<content styleCode="italics">Hypericum perforatum</content>) </item>
+                                 <item>
+                                    <caption>o</caption>Dexamethasone (a steroid) </item>
+                                 <item>
+                                    <caption>o</caption>Medicine for:<list listType="unordered">
+                                       <item>
+                                          <caption>o</caption>tuberculosis (TB)</item>
+                                       <item>
+                                          <caption>o</caption>seizures (epilepsy) </item>
+                                       <item>
+                                          <caption>o</caption>bacterial infections (antibiotics) </item>
+                                       <item>
+                                          <caption>o</caption>fungal infections (antifungals) </item>
+                                       <item>
+                                          <caption>o</caption>HIV (AIDS) </item>
+                                       <item>
+                                          <caption>o</caption>depression</item>
+                                    </list>
+                                 </item>
+                              </list>
+                              <paragraph>Know the medicines you take. Keep a list of them and show it to your healthcare provider and pharmacist when you get a new medicine.</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">How will I receive ISTODAX?</content>
+                              </paragraph>
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>•</caption>ISTODAX will be given to you by your healthcare provider or nurse as an intravenous injection into your vein usually over 4 hours.</item>
+                                 <item>
+                                    <caption>•</caption>ISTODAX is usually given on Day 1, Day 8, and Day 15 of a 28-day cycle of treatment.</item>
+                                 <item>
+                                    <caption>•</caption>Your healthcare provider will decide how long you will receive treatment with ISTODAX.</item>
+                                 <item>
+                                    <caption>•</caption>Your healthcare provider will check your blood cell counts and other blood tests regularly during your treatment with ISTODAX to check for side effects of ISTODAX. Your healthcare provider may decide to do other tests to check your health as needed.</item>
+                                 <item>
+                                    <caption>•</caption>Your healthcare provider may stop your treatment, change when you get your treatment, or change the dose of your treatment if you have certain side effects while receiving ISTODAX.</item>
+                              </list>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" styleCode="Rrule Lrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">What are the possible side effects of ISTODAX?</content>
+                                 <br/>
+                                 <content styleCode="bold">ISTODAX may cause serious side effects, including:</content>
+                              </paragraph>
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>•</caption>
+                                    <content styleCode="bold">Low blood cell counts:</content> Your healthcare provider will regularly do blood tests to check your blood counts.<list listType="unordered">
+                                       <item>
+                                          <caption>o</caption>
+                                          <content styleCode="bold">Low platelets:</content> can cause unusual bleeding or bruising under the skin. Talk to your healthcare provider right away if this happens. </item>
+                                       <item>
+                                          <caption>o</caption>
+                                          <content styleCode="bold">Low red blood cells:</content> may make you feel tired and you may get tired easily. You may look pale and feel short of breath. Tell your healthcare provider if you have these symptoms.</item>
+                                       <item>
+                                          <caption>o</caption>
+                                          <content styleCode="bold">Low white blood cells:</content> can cause you to get infections, which may be serious.</item>
+                                    </list>
+                                 </item>
+                                 <item>
+                                    <caption>•</caption>
+                                    <content styleCode="bold">Serious infections.</content> People receiving ISTODAX can develop serious infections that can sometimes lead to death. These infections can happen during and after treatment with ISTODAX. Your risk of infection may be higher if you have had chemotherapy in the past. Tell your healthcare provider right away if you have any of these symptoms of infection: </item>
+                              </list>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td styleCode="Lrule " valign="top"/>
+                           <td valign="top">
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>o</caption>Fever</item>
+                                 <item>
+                                    <caption>o</caption>cough</item>
+                                 <item>
+                                    <caption>o</caption>shortness of breath with or without chest pain</item>
+                              </list>
+                           </td>
+                           <td colspan="2" styleCode="Rrule " valign="top">
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>o</caption>burning with urination</item>
+                                 <item>
+                                    <caption>o</caption>flu-like symptoms</item>
+                                 <item>
+                                    <caption>o</caption>muscle aches</item>
+                                 <item>
+                                    <caption>o</caption>worsening skin problems</item>
+                              </list>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" styleCode="Rrule Lrule Botrule " valign="top">
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>•</caption>
+                                    <content styleCode="bold">Changes in your heartbeat.</content> Your healthcare provider may check your heart by doing an ECG (electrocardiogram) and blood tests to check your potassium and magnesium levels, before you start ISTODAX treatment. Tell your healthcare provider if you feel an abnormal heartbeat, feel dizzy or faint, have chest pain or shortness of breath. </item>
+                                 <item>
+                                    <caption>•</caption>
+                                    <content styleCode="bold">Tumor Lysis Syndrome (TLS).</content> TLS is a problem of the rapid breakdown of cancer cells that can happen during your treatment with ISTODAX. You should drink plenty of fluids in the 3 days after you receive treatment with ISTODAX. Your healthcare provider may do blood tests to check for TLS and may give you medicine to prevent or treat TLS.</item>
+                              </list>
+                              <paragraph>The most common side effects of ISTODAX include:</paragraph>
+                              <list listType="unordered">
+                                 <item>
+                                    <caption>•</caption>nausea, tiredness, vomiting, loss of appetite, changes in sense of taste, constipation, and itching.</item>
+                              </list>
+                              <paragraph>These are not all the possible side effects of ISTODAX. Call your doctor for medical advice about side effects. You may report side effects to FDA at 1-800-FDA-1088. </paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">General information about the safe and effective use of ISTODAX</content>
+                                 <br/>Medicines are sometimes prescribed for purposes other than those listed in a Patient Information leaflet.<br/>This Patient Information leaflet summarizes the most important information about ISTODAX. If you would like more information, talk with your healthcare provider. You can ask your pharmacist or healthcare provider for information about ISTODAX that is written for health professionals.</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="4" styleCode="Rrule Lrule Botrule " valign="top">
+                              <paragraph>
+                                 <content styleCode="bold">What are the ingredients in ISTODAX?</content>
+                                 <br/>
+                                 <content styleCode="bold">Active ingredient:</content> romidepsin<br/>
+                                 <content styleCode="bold">Inactive ingredients:</content> povidone, hydrochloric acid as a pH adjuster. The diluent contains 80% propylene glycol and 20% dehydrated alcohol.<br/>  </paragraph>
+                              <paragraph>Marketed by:</paragraph>
+                              <paragraph>Bristol-Myers Squibb Company<br/>Princeton, NJ 08543 USA</paragraph>
+                              <paragraph>
+                                 <br/>ISTODAX<sup>®</sup> is a trademark of Celgene Corporation, a Bristol-Myers Squibb company.<br/>
+                                 <br/>ISTBAXPPI.011  1/23<br/>For more information, go to www.ISTODAX.com or call 1-800-721-5072.</paragraph>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td colspan="3" valign="top">
+                              <paragraph>This Patient Information has been approved by the U.S. Food and Drug Administration.</paragraph>
+                           </td>
+                           <td align="right" valign="middle">
+                              <paragraph>Revised: January 2023</paragraph>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <effectiveTime value="20230131"/>
+            </section>
+         </component>
+         <component>
+            <section ID="s_pdp01">
+               <id root="63a9c754-f65c-4737-a850-bab095d27c62"/>
+               <code code="51945-4" codeSystem="2.16.840.1.113883.6.1" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <title>PRINCIPAL DISPLAY PANEL - Kit Carton</title>
+               <text>
+                  <paragraph>NDC 59572-984-01</paragraph>
+                  <paragraph>ISTODAX<sup>®</sup> Kit<br/>(romidepsin) for injection</paragraph>
+                  <paragraph>10 mg/vial</paragraph>
+                  <paragraph>Rx Only</paragraph>
+                  <paragraph>Reconstitution and dilution required.</paragraph>
+                  <paragraph>Each kit contains:</paragraph>
+                  <list listType="unordered">
+                     <item>
+                        <caption> </caption>— One 10 mg single-dose vial of ISTODAX<sup>®</sup>
+                     </item>
+                     <item>
+                        <caption> </caption>— One single-dose vial with 2.2 mL of Diluent</item>
+                  </list>
+                  <paragraph>For Intravenous Use Only</paragraph>
+                  <paragraph>Single-Dose Vial - Discard Unused Portion</paragraph>
+                  <paragraph>Product of Germany</paragraph>
+                  <renderMultiMedia ID="id347915056" referencedObject="ID_981d4b39-45c2-4a9d-9a15-05d14fe11946"/>
+               </text>
+               <effectiveTime value="20230131"/>
+               <component>
+                  <observationMedia ID="ID_981d4b39-45c2-4a9d-9a15-05d14fe11946">
+                     <text>Carton</text>
+                     <value mediaType="image/jpeg" xsi:type="ED">
+                        <reference value="Carton3.JPG.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="s_pdp02">
+               <id root="e4ffb0cf-4d26-4753-92c4-4eb75ac4b318"/>
+               <code code="51945-4" codeSystem="2.16.840.1.113883.6.1" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <title>PRINCIPAL DISPLAY PANEL - 10 mg Vial Label</title>
+               <text>
+                  <paragraph>NDC 59572-962-10</paragraph>
+                  <paragraph>ISTODAX<sup>®</sup>
+                     <br/>(romidepsin) for injection</paragraph>
+                  <paragraph>Rx Only</paragraph>
+                  <paragraph>10 mg/vial</paragraph>
+                  <paragraph>FOR INTRAVENOUS USE ONLY.</paragraph>
+                  <paragraph>Directions For Use: See accompanying package<br/>insert for complete reconstitution directions.<br/>Product MUST be reconstituted with 2.2 mL<br/>of supplied Diluent for a concentration of<br/>5 mg/mL and then further diluted in 500 mL<br/>of 0.9% sodium chloride injection, USP.</paragraph>
+                  <renderMultiMedia ID="id-699705638" referencedObject="C05A1D14-6BDC-4A5E-A1BE-EFFB18837A1D"/>
+               </text>
+               <effectiveTime value="20230131"/>
+               <component>
+                  <observationMedia ID="C05A1D14-6BDC-4A5E-A1BE-EFFB18837A1D">
+                     <text>label</text>
+                     <value mediaType="image/jpeg" xsi:type="ED">
+                        <reference value="label.JPG.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="s_pdp03">
+               <id root="291a57bb-9bd1-46a4-89b1-7ce6298cee70"/>
+               <code code="51945-4" codeSystem="2.16.840.1.113883.6.1" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <title>PRINCIPAL DISPLAY PANEL - 2.2 mL Vial Label</title>
+               <text>
+                  <paragraph>DILUENT<br/>for ISTODAX<sup>®</sup>
+                  </paragraph>
+                  <paragraph>NDC 59572-973-02</paragraph>
+                  <paragraph>Rx Only</paragraph>
+                  <paragraph>2.2 mL per single-dose vial<br/>Each vial contains 80% propylene glycol and 20% dehydrated<br/>alcohol. Dosage and Administration: Withdraw 2.2 mL<br/>of Diluent to reconstitute 10 mg vial of ISTODAX<sup>®</sup>.</paragraph>
+                  <paragraph>LOT:</paragraph>
+                  <paragraph>EXP:</paragraph>
+                  <renderMultiMedia ID="id592747027" referencedObject="ID_83afa5a0-a498-46f5-a5d6-48b66bc40615"/>
+               </text>
+               <effectiveTime value="20230131"/>
+               <component>
+                  <observationMedia ID="ID_83afa5a0-a498-46f5-a5d6-48b66bc40615">
+                     <text>diluent</text>
+                     <value mediaType="image/jpeg" xsi:type="ED">
+                        <reference value="diluent.JPG.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</document>
