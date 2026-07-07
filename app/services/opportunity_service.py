@@ -4,6 +4,9 @@ def build_opportunity_summary(
     orange_book_data
 
 ):
+    
+    if orange_book_data is None:
+        orange_book_data = {}
 
     score = commercial_data.get(
         "portfolio_score",

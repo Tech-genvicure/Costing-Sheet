@@ -1,3 +1,5 @@
+import re
+
 import streamlit as st # type: ignore
 import pandas as pd
 from app.services.dailymed_service import search_drug
@@ -382,6 +384,22 @@ if "manufacturer_saved" not in st.session_state:
 if "strength_tables_initialized" not in st.session_state:
     st.session_state.strength_tables_initialized = False
 
+if "selected_dosage_form" not in st.session_state:
+    st.session_state.selected_dosage_form = ""
+
+if "project_costs" not in st.session_state:
+    st.session_state.project_costs = {
+        "API Development": 0.0,
+        "API TT": 0.0,
+        "API Material": 0.0,
+        "R&D Development": 0.0,
+        "BE Study Pilot": 0.0,
+        "BE Pivotal": 0.0,
+        "Other Materials": 0.0,
+        "RLD Cost": 0.0,
+    }
+
+
 # =====================================================
 # SEARCH SECTION
 # =====================================================
@@ -644,6 +662,46 @@ if st.session_state.analysis_done:
         st.session_state.parsed_pipeline_data
     )
 
+# CMO Table
+if st.session_state.analysis_done:
+
+    CMO_COST_MASTER = {
+
+    "POWDER":35000,
+
+    "TABLET":40000,
+    "TABLETS":40000,
+
+    "HARD CAPSULE":50000,
+    "HARD CAPSULES":50000,
+
+    "ORAL SOLUTION":50000,
+
+    "CREAM":60000,
+    "GEL":60000,
+    "CREAM/GEL":60000,
+
+    "SACHET":60000,
+    "SACHETS":60000,
+
+    "SUSPENSION":100000,
+
+    "STERILE INJECTABLE":100000,
+
+    "SOFTGEL":125000,
+    "SOFTGELS":125000,
+
+    "OPHTHALMIC":125000,
+
+    "LYOPHILIZED INJECTABLE":150000,
+
+    "PREFILLED SYRINGE":175000,
+
+    "INHALER":300000
+}
+    
+
+
     # =================================================
     # EXECUTIVE SUMMARY
     # =================================================
@@ -688,12 +746,13 @@ if st.session_state.analysis_done:
     # =================================================
     st.divider()
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
         "Regulatory",
         "Formulation Costing",
         "Commercial Model",
         "Product Economics",
-        "API Calculations"
+        "API Calculations" ,
+        "Project Costing"
     ])
 
     # =================================================
@@ -730,7 +789,19 @@ if st.session_state.analysis_done:
 
         o1, o2, o3, o4 = st.columns(4)
 
+        if orange_book is None:
+
+            orange_book = {
+                "application_number": "N/A",
+                "patent_count": 0,
+                "exclusivity_count": 0,
+                "latest_patent_expiry": "N/A",
+                "latest_exclusivity": "N/A",
+                "patent_risk": "LOW"
+            }
+
         with o1:
+
             st.metric(
                 "Application No",
                 orange_book["application_number"]
@@ -783,6 +854,8 @@ if st.session_state.analysis_done:
 
             for f in formulations
         ]))
+
+        st.session_state.selected_dosage_form = dosage_forms
 
         c1, c2 = st.columns(2)
 
@@ -2281,9 +2354,15 @@ if st.session_state.analysis_done:
         # ------------------------------------------------------
         for strength in strengths:
 
-            mg_value = float(
-                str(strength).replace(" mg", "")
+            match = re.search(
+                r"(\d+(?:\.\d+)?)",
+                str(strength)
             )
+
+            if match:
+                mg_value = float(match.group(1))
+            else:
+                mg_value = 0.0
 
             if strength not in st.session_state.year1_values:
                 st.session_state.year1_values[strength] = 0
@@ -2378,9 +2457,15 @@ if st.session_state.analysis_done:
 
         for strength in strengths:
 
-            mg_value = float(
-                str(strength).replace(" mg", "")
+            match = re.search(
+                r"(\d+(?:\.\d+)?)",
+                str(strength)
             )
+
+            if match:
+                mg_value = float(match.group(1))
+            else:
+                mg_value = 0.0
 
             year1 = (
                 st.session_state.year1_values.get(
@@ -2732,3 +2817,137 @@ if st.session_state.analysis_done:
                 )
 
             st.markdown("---")
+    
+
+    # ==========================================================
+    # TAB 6 : PROJECT COSTING
+    # ==========================================================
+    with tab6:
+
+
+        def get_cmo_cost(dosage_forms):
+
+            if not dosage_forms:
+                return 0
+
+            # If a list is passed, use the first value
+            if isinstance(dosage_forms, list):
+                dosage_forms = dosage_forms[0] if dosage_forms else ""
+
+            dosage_forms = str(dosage_form).upper().strip()
+
+            return CMO_COST_MASTER.get(dosage_forms, 0)
+
+        st.subheader("Project Cost Estimation")
+
+        dosage = st.session_state.get(
+            "selected_dosage_form",
+            ""
+        )
+
+        cmo_cost = get_cmo_cost(dosage)
+
+        api_cost = st.session_state.get(
+            "total_api_cost",
+            0.0
+        )
+
+        rows = []
+
+        manual_rows = [
+
+            "API Development",
+
+            "API TT",
+
+            "API Material",
+
+            "R&D Development",
+
+            "BE Study Pilot",
+
+            "BE Pivotal",
+
+            "Other Materials",
+
+            "RLD Cost"
+
+        ]
+
+        # -----------------------------
+        # Manual rows
+        # -----------------------------
+        for row in manual_rows:
+
+            rows.append({
+
+                "Project Cost": row,
+
+                "Amount": st.session_state.project_costs.get(
+                    row,
+                    0.0
+                )
+
+            })
+
+        # -----------------------------
+        # Fixed rows
+        # -----------------------------
+        rows.extend([
+
+            {
+                "Project Cost":"ANDA Filing",
+                "Amount":400000
+            },
+
+            {
+                "Project Cost":"CMO Cost",
+                "Amount":cmo_cost
+            },
+
+            {
+                "Project Cost":"API Cost",
+                "Amount":api_cost
+            }
+
+        ])
+
+        df = pd.DataFrame(rows)
+
+        edited_df = st.data_editor(
+
+            df,
+
+            use_container_width=True,
+
+            hide_index=True,
+
+            disabled=[
+                "Project Cost"
+            ],
+
+            key="project_cost_editor"
+
+        )
+
+        total_project_cost = 0
+
+        for _, row in edited_df.iterrows():
+
+            name = row["Project Cost"]
+
+            amount = float(row["Amount"])
+
+            if name in st.session_state.project_costs:
+
+                st.session_state.project_costs[name] = amount
+
+            total_project_cost += amount
+
+        st.metric(
+
+            "Total Project Cost",
+
+            f"${total_project_cost:,.2f}"
+
+        )

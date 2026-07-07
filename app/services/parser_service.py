@@ -1,5 +1,7 @@
+from itertools import product
 import re
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup # type: ignore
+
 
 from app.utils.strength_normalizer import (
     normalize_strength,
@@ -69,72 +71,7 @@ def clean_strengths(strengths):
 
 
 # =========================================================
-# EXTRACT STRENGTHS
-# =========================================================
-
-def extract_strengths(text):
-
-    pattern = r"\b(\d+(?:\.\d+)?)\s?(mg|mcg|g)\b"
-
-    matches = re.findall(
-        pattern,
-        text,
-        re.IGNORECASE
-    )
-
-    strengths = set()
-
-    # Known excipient garbage
-    blacklist = {
-
-        "0.0025 mg",
-        "0.0075 mg",
-        "0.01 mg",
-        "0.03 mg",
-        "0.075 mg",
-        "0.09 mg",
-        "0.1 mg",
-        "0.15 mg",
-        "1.42 mg",
-        "8.25 mg",
-        "54 mg"
-    }
-
-    for value, unit in matches:
-
-        try:
-            numeric = float(value)
-
-        except:
-            continue
-
-        # Invalid values
-        if numeric <= 0:
-            continue
-
-        if numeric > 100:
-            continue
-
-        full_strength = f"{value} {unit.lower()}"
-
-        normalized = normalize_strength(
-            full_strength
-        )
-
-        # Remove excipient strengths
-        if normalized in blacklist:
-            continue
-
-        if not is_valid_strength(normalized):
-            continue
-
-        strengths.add(normalized)
-
-    return clean_strengths(list(strengths))
-
-
-# =========================================================
-# PRIMARY API EXTRACTION
+# PRIMARY API EXTRACTION (Fallback)
 # =========================================================
 
 def extract_primary_api(full_text):
@@ -145,6 +82,7 @@ def extract_primary_api(full_text):
         r"\(([A-Za-z0-9\s\-]+)\)\s+tablets",
         r"\(([A-Za-z0-9\s\-]+)\)\s+capsules",
         r"\(([A-Za-z0-9\s\-]+)\)\s+for"
+
     ]
 
     for pattern in patterns:
@@ -157,12 +95,69 @@ def extract_primary_api(full_text):
 
         if match:
 
-            api = match.group(1).strip().lower()
-
-            return api
+            return match.group(1).strip().lower()
 
     return "Unknown API"
 
+
+# =========================================================
+# SPLIT COMBINATION APIs
+# =========================================================
+
+def split_active_ingredients(api_name: str):
+
+    if not api_name:
+        return []
+
+    separators = [
+        " AND ",
+        " + ",
+        " WITH ",
+    ]
+
+    ingredients = [api_name]
+
+    for sep in separators:
+
+        new = []
+
+        for ingredient in ingredients:
+
+            if sep in ingredient.upper():
+
+                parts = re.split(
+                    rf"\s*{re.escape(sep.strip())}\s*",
+                    ingredient,
+                    flags=re.IGNORECASE
+                )
+
+                new.extend(parts)
+
+            else:
+
+                new.append(ingredient)
+
+        ingredients = new
+
+    cleaned = []
+
+    seen = set()
+
+    for ingredient in ingredients:
+
+        ingredient = ingredient.strip()
+
+        if not ingredient:
+            continue
+
+        if ingredient.upper() in seen:
+            continue
+
+        seen.add(ingredient.upper())
+
+        cleaned.append(ingredient)
+
+    return cleaned
 
 # =========================================================
 # INACTIVE INGREDIENT EXTRACTION
@@ -205,131 +200,212 @@ def extract_inactive_ingredients(text):
                 inactive.append(item)
 
     return list(set(inactive))
-
+    
+# =========================================================
+# PARSER V2
+# Replace extract_manufactured_products() completely
+# =========================================================
 
 # =========================================================
-# BUILD FORMULATIONS
+# EXTRACT MANUFACTURED PRODUCTS (Parser V2)
 # =========================================================
 
-def build_formulations(
-    api_name,
-    dosage_forms,
-    routes,
-    strengths
-):
+def extract_manufactured_products(soup):
 
     formulations = []
+    seen = set()
 
-    tablet_strengths = []
-    injection_strengths = []
-    capsule_strengths = []
+    # FDA SPL stores every marketed presentation
+    # inside manufacturedProduct nodes.
+    products = soup.find_all("manufacturedProduct")
 
-    for strength in strengths:
+    print("\n========== PARSER V2 ==========")
+    print("manufacturedProduct nodes:", len(products))
 
-        try:
+    for product in products:
 
-            value = float(
-                re.findall(
-                    r"\d+\.?\d*",
-                    strength
-                )[0]
+
+        print("\n========================")
+        print(product.prettify()[:2500])
+        
+
+        # --------------------------------------------------
+        # API
+        # --------------------------------------------------
+
+        api_name = ""
+
+        generic = product.find("genericMedicine")
+
+        if generic:
+
+            name = generic.find("name")
+
+            if name:
+                api_name = name.get_text(strip=True)
+
+        if not api_name:
+
+            ingredient = product.find("ingredient")
+
+            if ingredient:
+
+                substance = ingredient.find("ingredientSubstance")
+
+                if substance:
+
+                    name = substance.find("name")
+
+                    if name:
+                        api_name = name.get_text(strip=True)
+
+        # --------------------------------------------------
+        # DOSAGE FORM
+        # --------------------------------------------------
+
+        dosage_form = ""
+
+        form = product.find("formCode")
+
+        if form:
+
+            dosage_form = form.get(
+                "displayName",
+                ""
             )
 
-        except:
-            continue
+        dosage_form = normalize_dosage_form(
+            dosage_form
+        )
 
-        # =================================================
-        # TABLET STRENGTHS
-        # =================================================
+        # --------------------------------------------------
+        # ROUTE
+        # --------------------------------------------------
 
-        if value in [1.5, 3, 4, 9, 25]:
+        route = ""
 
-            tablet_strengths.append(
-                strength
+        route_tag = product.find("routeCode")
+
+        if route_tag:
+
+            route = route_tag.get(
+                "displayName",
+                ""
             )
 
-        # =================================================
-        # INJECTION STRENGTHS
-        # =================================================
+        route = normalize_route(route)
+        if not route:
+            route = "UNKNOWN"
 
-        elif value in [
-            0.25,
-            0.5,
-            1,
-            1.7,
-            2.4,
-            7.2
-        ]:
+        # --------------------------------------------------
+        # INGREDIENTS
+        # --------------------------------------------------
 
-            injection_strengths.append(
-                strength
+        ingredients = product.find_all(
+            "ingredient",
+            recursive=False
+        )
+
+        if not ingredients:
+
+            ingredients = product.find_all("ingredient")
+
+        for ingredient in ingredients:
+
+            ingredient_name = api_name
+
+            substance = ingredient.find(
+                "ingredientSubstance"
             )
 
-        # =================================================
-        # CAPSULE FALLBACK
-        # =================================================
+            if substance:
 
-        else:
+                name = substance.find("name")
 
-            if "CAPSULE" in dosage_forms:
+                if name:
 
-                capsule_strengths.append(
+                    ingredient_name = (
+                        name.get_text(strip=True)
+                    )
+
+            ingredient_list = split_active_ingredients(
+                ingredient_name
+            )
+
+            quantity = ingredient.find("quantity")
+
+            if not quantity:
+                continue
+
+            numerator = quantity.find("numerator")
+
+            if not numerator:
+                continue
+
+            value = numerator.get(
+                "value",
+                ""
+            )
+
+            unit = numerator.get(
+                "unit",
+                ""
+            )
+
+            if not value:
+                continue
+
+            strength = normalize_strength(
+                f"{value} {unit}"
+            )
+
+            for api in ingredient_list:
+
+                # Skip UNKNOWN when we already have a better route
+                if route == "UNKNOWN":
+
+                    better = any(
+                        f["api_name"].upper() == api.upper()
+                        and f["dosage_form"] == dosage_form
+                        and f["strength"] == strength
+                        and f["route"] != "UNKNOWN"
+                        for f in formulations
+                    )
+
+                    if better:
+                        continue
+
+                key = (
+                    api.upper(),
+                    dosage_form,
+                    route,
                     strength
                 )
 
-    # =====================================================
-    # TABLET FORMULATIONS
-    # =====================================================
+                if key in seen:
+                    continue
 
-    for strength in tablet_strengths:
+                seen.add(key)
 
-        formulations.append({
+                formulations.append({
 
-            "api_name": api_name,
+                    "api_name": api,
 
-            "strength": strength,
+                    "dosage_form": dosage_form,
 
-            "dosage_form": "TABLET",
+                    "route": route,
 
-            "route": "ORAL"
-        })
+                    "strength": strength
 
-    # =====================================================
-    # INJECTION FORMULATIONS
-    # =====================================================
+                })
 
-    for strength in injection_strengths:
+    print("\nFORMULATIONS FOUND:")
+    print(len(formulations))
 
-        formulations.append({
-
-            "api_name": api_name,
-
-            "strength": strength,
-
-            "dosage_form": "INJECTION",
-
-            "route": "SUBCUTANEOUS"
-        })
-
-    # =====================================================
-    # CAPSULE FORMULATIONS
-    # =====================================================
-
-    for strength in capsule_strengths:
-
-        formulations.append({
-
-            "api_name": api_name,
-
-            "strength": strength,
-
-            "dosage_form": "CAPSULE",
-
-            "route": "ORAL"
-        })
+    for row in formulations:
+        print(row)
 
     return formulations
-
 
 # =========================================================
 # MAIN PARSER
@@ -346,8 +422,6 @@ def parse_spl_xml(xml_path):
         " ",
         strip=True
     )
-
-    text_upper = full_text.upper()
 
     # =====================================================
     # TITLE
@@ -367,9 +441,7 @@ def parse_spl_xml(xml_path):
 
     manufacturer = "N/A"
 
-    org = soup.find(
-        "representedOrganization"
-    )
+    org = soup.find("representedOrganization")
 
     if org:
         manufacturer = org.get_text(
@@ -378,114 +450,82 @@ def parse_spl_xml(xml_path):
         )
 
     # =====================================================
-    # ACTIVE INGREDIENTS
-    # =====================================================
-
-    primary_api = extract_primary_api(
-        full_text
-    )
-
-    active_ingredients = [primary_api]
-
-    # =====================================================
-    # DOSAGE FORMS
-    # =====================================================
-
-    dosage_forms = []
-
-    if "TABLET" in text_upper:
-        dosage_forms.append("TABLET")
-
-    if "CAPSULE" in text_upper:
-        dosage_forms.append("CAPSULE")
-
-    if "INJECTION" in text_upper:
-        dosage_forms.append("INJECTION")
-
-    dosage_forms = [
-        normalize_dosage_form(df)
-        for df in dosage_forms
-    ]
-
-    dosage_forms = list(set(dosage_forms))
-
-    # =====================================================
-    # ROUTES
-    # =====================================================
-
-    routes = []
-
-    if "SUBCUTANEOUS" in text_upper:
-        routes.append("SUBCUTANEOUS")
-
-    if "ORAL" in text_upper:
-        routes.append("ORAL")
-
-    intravenous_patterns = [
-        "FOR INTRAVENOUS USE",
-        "INTRAVENOUS USE",
-        "IV USE"
-    ]
-
-    for pattern in intravenous_patterns:
-
-        if pattern in text_upper:
-            routes.append("INTRAVENOUS")
-            break
-
-    routes = [
-        normalize_route(route)
-        for route in routes
-    ]
-
-    routes = list(set(routes))
-
-    # =====================================================
-    # STRENGTHS
-    # =====================================================
-
-    strengths = extract_strengths(
-        full_text
-    )
-
-    # =====================================================
     # INACTIVE INGREDIENTS
     # =====================================================
 
-    inactive_ingredients = (
-        extract_inactive_ingredients(
-            full_text
-        )
+    inactive_ingredients = extract_inactive_ingredients(
+        full_text
     )
 
     # =====================================================
-    # FORMULATIONS
+    # STRUCTURED PRODUCT PARSER (Parser V2)
     # =====================================================
 
-    formulations = build_formulations(
-
-        api_name=active_ingredients[0]
-        if active_ingredients
-        else "Unknown API",
-
-        dosage_forms=dosage_forms,
-
-        routes=routes,
-
-        strengths=strengths
+    formulations = extract_manufactured_products(
+        soup
     )
+
+    strengths = sorted(
+        list({
+            f["strength"]
+            for f in formulations
+            if f["strength"]
+        })
+    )
+
+    dosage_forms = sorted(
+        list({
+            f["dosage_form"]
+            for f in formulations
+            if f["dosage_form"]
+        })
+    )
+
+    routes = sorted(
+        list({
+            f["route"]
+            for f in formulations
+            if f["route"]
+        })
+    )
+
+    active_ingredients = sorted(
+        list({
+            f["api_name"]
+            for f in formulations
+            if f["api_name"]
+        })
+    )
+
+    # Fallback if API wasn't found structurally
+    if not active_ingredients:
+
+        active_ingredients = [
+            extract_primary_api(
+                full_text
+            )
+        ]
 
     # =====================================================
     # FINAL OUTPUT
     # =====================================================
 
     return {
+
         "title": title,
+
         "manufacturer": manufacturer,
+
         "active_ingredients": active_ingredients,
+
         "dosage_form": dosage_forms,
+
         "route": routes,
+
         "strengths": strengths,
+
         "inactive_ingredients": inactive_ingredients,
+
         "formulations": formulations
+
     }

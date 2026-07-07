@@ -136,30 +136,15 @@ def process_drug(
     # STEP 2 — DOWNLOAD + PARSE XML
     # =====================================================
 
-    if cache_key in st.session_state.parsed_cache:
+    xml_path = download_spl_xml(setid)
 
-        parsed = st.session_state.parsed_cache[
-            cache_key
-        ]
+    print("\nPARSER V2 RUNNING...\n")
 
-        print("\nLoaded from cache.")
+    parsed = parse_spl_xml(xml_path)
 
-    else:
-
-        xml_path = download_spl_xml(
-            setid
-        )
-
-        print("\nXML SAVED:\n")
-        print(xml_path)
-
-        parsed = parse_spl_xml(
-            xml_path
-        )
-
-        st.session_state.parsed_cache[
-            cache_key
-        ] = parsed
+    st.session_state.parsed_cache[
+        cache_key
+    ] = parsed
 
     # =====================================================
     # STEP 3 — VERIFY PARSE
@@ -240,6 +225,10 @@ def process_drug(
     )
 
     print("\nORANGE BOOK SUMMARY:\n")
+    print(orange_book_summary)
+
+    print("\nORANGE BOOK SUMMARY TYPE:")
+    print(type(orange_book_summary))
     print(orange_book_summary)
 
     # =====================================================

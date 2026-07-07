@@ -88,6 +88,7 @@ def normalize_strength(strength_text):
     normalized = strength_text
 
     for old, new in replacements.items():
+
         normalized = re.sub(
             old,
             new,
@@ -95,12 +96,34 @@ def normalize_strength(strength_text):
             flags=re.IGNORECASE
         )
 
+    # -----------------------------------------
+    # Normalize numeric values
+    # 40.0 mg -> 40 mg
+    # 74.5 mg -> 74.5 mg
+    # -----------------------------------------
+
+    def format_number(match):
+
+        number = float(match.group(1))
+        unit = match.group(2)
+
+        if number.is_integer():
+            number = int(number)
+
+        return f"{number} {unit}"
+
+    normalized = re.sub(
+        r"(\d+(?:\.\d+)?)\s*(mg|mcg|g|mL|units)",
+        format_number,
+        normalized,
+        flags=re.IGNORECASE
+    )
+
     # Standard spacing
     normalized = re.sub(r"\s*/\s*", "/", normalized)
     normalized = re.sub(r"\s+", " ", normalized)
 
     return normalized.strip()
-
 
 def extract_numeric_strength(strength_text):
     """

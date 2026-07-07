@@ -1,6 +1,7 @@
 import os
 import time
 import requests # type: ignore
+from urllib.parse import quote
 
 BASE_URL = "https://dailymed.nlm.nih.gov/dailymed/services/v2"
 
@@ -17,19 +18,12 @@ def search_drug(
     manufacturer_name=None,
     retries=3
 ):
-    """
-    Search DailyMed SPL records.
 
-    If manufacturer_name is provided,
-    return only records belonging to
-    that manufacturer.
-
-    Otherwise return all records.
-    """
+    drug_name = drug_name.strip()
 
     url = (
         f"{BASE_URL}/spls.json"
-        f"?drug_name={drug_name}"
+        f"?drug_name={quote(drug_name)}"
     )
 
     for attempt in range(retries):
@@ -52,12 +46,12 @@ def search_drug(
             )
 
             if not spls:
-
                 return []
 
             # =========================================
             # FILTER BY MANUFACTURER
             # =========================================
+
             if manufacturer_name:
 
                 filtered_spls = []
@@ -71,20 +65,12 @@ def search_drug(
                         )
                     ).upper()
 
-                    if (
-                        manufacturer_name.upper()
-                        in labeler
-                    ):
+                    if manufacturer_name.upper() in labeler:
 
-                        filtered_spls.append(
-                            record
-                        )
+                        filtered_spls.append(record)
 
                 return filtered_spls
 
-            # =========================================
-            # RETURN ALL RECORDS
-            # =========================================
             return spls
 
         except Exception as e:
@@ -96,7 +82,6 @@ def search_drug(
             time.sleep(2)
 
     return []
-
 
 # =====================================================
 # GET UNIQUE MANUFACTURERS
@@ -183,16 +168,10 @@ def get_record_by_manufacturer(
 # =====================================================
 # DOWNLOAD SPL XML
 # =====================================================
-def download_spl_xml(
-    setid
-):
-    """
-    Download SPL XML from DailyMed.
-    """
+def download_spl_xml(setid):
 
     url = (
-        f"{BASE_URL}/spls/"
-        f"{setid}.xml"
+        f"{BASE_URL}/spls/{setid}.xml"
     )
 
     response = requests.get(

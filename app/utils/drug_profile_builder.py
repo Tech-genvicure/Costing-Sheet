@@ -4,6 +4,9 @@ def build_drug_profile(
     orangebook_data=None,
     pipeline_data=None
 ):
+    
+    if openfda_data is None:
+        openfda_data = {}
 
     # ------------------------------------------------
     # DEFAULT VALUES
