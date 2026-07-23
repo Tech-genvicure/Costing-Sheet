@@ -1,6 +1,7 @@
 import re
-import streamlit as st # type: ignore
+import streamlit as st  # type: ignore
 import pandas as pd
+
 from app.services.dailymed_service import search_drug
 from app.services.openfda_service import get_drug_label
 from app.utils.drug_profile_builder import build_drug_profile
@@ -8,9 +9,12 @@ from app.services.rxnorm_service import get_rxnorm_data
 from app.services.orangebook_service import build_orange_book_summary
 from app.services.pipeline_service import process_drug
 from app.services.commercial_service import build_commercial_model
-from io import BytesIO
-from openpyxl import Workbook # type: ignore
 
+# NEW IMPORT
+from app.services.drug_profile_builders import DrugProfileBuilder
+
+from io import BytesIO
+from openpyxl import Workbook  # type: ignore
 
 # =====================================================
 # PAGE CONFIG
@@ -639,60 +643,42 @@ if analyze_button:
 
     if not drug_name:
 
-        st.warning(
-            "Please enter a drug name."
-        )
+        st.warning("Please enter a drug name.")
 
     else:
 
-        with st.spinner(
-            "Fetching regulatory intelligence..."
-        ):
+        with st.spinner("Fetching regulatory intelligence..."):
 
             # -----------------------------------------
-            # CACHE DAILYMED SEARCH
+            # Keep DailyMed search for Pipeline Service
             # -----------------------------------------
-            records = search_drug(
-                drug_name
-            )
+            records = search_drug(drug_name)
 
-            st.session_state.drug_records[
-                drug_name
-            ] = records
+            st.session_state.drug_records[drug_name] = records
 
             # -----------------------------------------
-            # EXISTING SERVICES
+            # NEW SQLITE PROFILE
             # -----------------------------------------
-            drug_data = get_drug_label(
-                drug_name
-            )
+            builder = DrugProfileBuilder()
 
-            rxnorm_data = get_rxnorm_data(
-                drug_name
-            )
+            try:
 
-            orangebook_data = (
-                build_orange_book_summary(
-                    drug_name
+                profile = builder.build(
+                    brand_name=drug_name
                 )
-            )
 
-            # -----------------------------------------
-            # SAVE FOR LATER
-            # -----------------------------------------
-            st.session_state.drug_data = (
-                drug_data
-            )
+            finally:
 
-            st.session_state.rxnorm_data = (
-                rxnorm_data
-            )
+                builder.close()
 
-            st.session_state.orangebook_data = (
-                orangebook_data
-            )
+            if profile is None:
 
-            st.session_state.analysis_done = True
+                st.error("Drug not found in local FDA database.")
+
+            else:
+
+                st.session_state.profile = profile
+                st.session_state.analysis_done = True
 
 # =====================================================
 # MANUFACTURER CHANGE
@@ -780,28 +766,27 @@ if (
 
         )
 
+
         # =========================================
-        # BUILD PROFILE
+        # BUILD PROFILE (SQLite)
         # =========================================
-        profile = build_drug_profile(
+        builder = DrugProfileBuilder()
 
-            st.session_state.drug_data,
+        try:
 
-            st.session_state.rxnorm_data,
+            profile = builder.build(
+                brand_name=drug_name
+            )
 
-            st.session_state.orangebook_data,
+        finally:
 
-            st.session_state.parsed_pipeline_data
-
-        )
+            builder.close()
 
         print("\n========== PROFILE ==========")
         print(profile)
         print(type(profile))
 
-        st.session_state.profile = (
-            profile
-        )
+        st.session_state.profile = profile
 
         # =========================================
         # RESET TABLES WHEN DRUG OR MANUFACTURER CHANGES
@@ -841,6 +826,7 @@ if (
         st.session_state.drug_name_saved = drug_name
 
         st.session_state.manufacturer_saved = current_manufacturer
+
 # =====================================================
 # DISPLAY ANALYSIS
 # =====================================================
@@ -903,34 +889,40 @@ if st.session_state.analysis_done:
 
     k1, k2, k3, k4 = st.columns(4)
 
+    # -----------------------------------------
+    # Get first product (if available)
+    # -----------------------------------------
+    first_product = (
+        profile["products"][0]
+        if profile.get("products")
+        else {}
+    )
+
     with k1:
         st.metric(
             "Brand",
-            profile["overview"]["brand_name"]
+            profile.get("brand_name", "N/A")
         )
 
     with k2:
         st.metric(
             "Generic",
-            profile["overview"]["generic_name"]
+            profile.get("generic_name", "N/A")
         )
 
     with k3:
         st.metric(
             "Dosage Form",
-            profile["overview"]["dosage_form"]
+            first_product.get("DosageForm", "N/A")
         )
 
     with k4:
         st.metric(
-
             "Manufacturer",
-
-            st.session_state.get(
-                "selected_manufacturer",
+            profile.get("applicant", {}).get(
+                "short_name",
                 "N/A"
             )
-
         )
 
     # =================================================
@@ -955,77 +947,76 @@ if st.session_state.analysis_done:
 
         st.subheader("Regulatory Overview")
 
+        # -----------------------------------------
+        # First Product
+        # -----------------------------------------
+        first_product = (
+            profile["products"][0]
+            if profile.get("products")
+            else {}
+        )
+
         r1, r2 = st.columns(2)
 
         with r1:
             st.info(
-                f"Route: {profile['overview']['route']}"
+                f"Route: {first_product.get('Route', 'N/A')}"
             )
 
         with r2:
             st.info(
-                f"Source: {profile['regulatory']['source']}"
+                f"Marketing Status: {profile.get('marketing_status', 'N/A')}"
             )
 
-        st.success(
-            f"Approval Status: "
-            f"{profile['regulatory']['status']}"
-        )
+        approval = profile.get("approval_date")
+
+        if approval:
+            st.success(
+                f"Approval Date: {approval}"
+            )
+        else:
+            st.warning("Approval Date: N/A")
 
         st.divider()
 
         st.subheader("Orange Book Intelligence")
 
-        pipeline = st.session_state.get("parsed_pipeline_data")
-
-        if pipeline:
-            orange_book = pipeline.get("orange_book", {})
-        else:
-            orange_book = {}
+        patents = profile.get("patents", [])
+        exclusivities = profile.get("exclusivities", [])
 
         o1, o2, o3, o4 = st.columns(4)
 
-        if orange_book is None:
-
-            orange_book = {
-                "application_number": "N/A",
-                "patent_count": 0,
-                "exclusivity_count": 0,
-                "latest_patent_expiry": "N/A",
-                "latest_exclusivity": "N/A",
-                "patent_risk": "LOW"
-            }
-
         with o1:
-            
-
-            print("\n===== ORANGE BOOK =====")
-            print(orange_book)
-            print(type(orange_book))
-  
             st.metric(
                 "Application No",
-                orange_book.get("application_number", "N/A")
+                profile.get("application_no", "N/A")
             )
 
         with o2:
             st.metric(
                 "Patent Count",
-                orange_book.get("patent_count", 0)
+                len(patents)
             )
 
         with o3:
             st.metric(
                 "Exclusivity Count",
-                orange_book.get("exclusivity_count", 0)
+                len(exclusivities)
             )
 
         with o4:
+
+            if len(patents) >= 10:
+                risk = "HIGH"
+            elif len(patents) >= 5:
+                risk = "MEDIUM"
+            else:
+                risk = "LOW"
+
             st.metric(
                 "Patent Risk",
-                orange_book.get("patent_risk", "N/A")
+                risk
             )
-
     # =================================================
     # FORMULATION COSTING TAB
     # =================================================
