@@ -1,226 +1,211 @@
+print("\n========== BUILD DRUG PROFILE ==========")
 def build_drug_profile(
-    openfda_data,
+    openfda_data=None,
     rxnorm_data=None,
     orangebook_data=None,
     pipeline_data=None
 ):
     
-    if openfda_data is None:
-        openfda_data = {}
+    print("\n========== BUILD DRUG PROFILE ==========")
+    print("OpenFDA:")
+    print(openfda_data)
+
+    print("\nRxNorm:")
+    print(rxnorm_data)
+
+    print("\nOrange Book:")
+    print(orangebook_data)
+
+    print("\nPipeline:")
+    print(pipeline_data)
 
     # ------------------------------------------------
-    # DEFAULT VALUES
+    # DEFAULTS
     # ------------------------------------------------
+
+    openfda_data = openfda_data or {}
+    rxnorm_data = rxnorm_data or {}
+    orange = pipeline_data.get(
+        "orange_book",
+        {}
+    )
+    pipeline_data = pipeline_data or {}
+
+    parsed = pipeline_data.get("parsed_data", {})
+
+    # ------------------------------------------------
+    # BRAND
+    # ------------------------------------------------
+
+    brand_name = openfda_data.get(
+        "brand_name"
+    )
+
+    if not brand_name:
+
+        synonym = rxnorm_data.get(
+            "synonym"
+        )
+
+        if synonym:
+
+            brand_name = synonym.split()[0]
+
+    if not brand_name:
+
+        brand_name = "N/A"
+
+    # ------------------------------------------------
+    # GENERIC
+    # ------------------------------------------------
+
+    generic = parsed.get(
+        "active_ingredients",
+        []
+    )
+
+    if generic:
+
+        generic_name = ", ".join(
+
+            x.title()
+
+            for x in generic
+
+        )
+
+    else:
+
+        generic_name = openfda_data.get(
+            "generic_name",
+            "N/A"
+        )
+
+    # ------------------------------------------------
+    # MANUFACTURER
+    # ------------------------------------------------
+
+    # Keep OpenFDA manufacturer
     manufacturer = openfda_data.get(
         "manufacturer_name",
         "N/A"
     )
 
-    dosage_form = "N/A"
+    # ------------------------------------------------
+    # DOSAGE FORM
+    # ------------------------------------------------
 
-    route = openfda_data.get(
+    dosage_forms = parsed.get(
+        "dosage_form",
+        []
+    )
+
+    if dosage_forms:
+        dosage_form = ", ".join(dosage_forms)
+    else:
+        dosage_form = "N/A"
+
+    # ------------------------------------------------
+    # ROUTE
+    # ------------------------------------------------
+
+    routes = parsed.get(
         "route",
-        "N/A"
+        []
+    )
+
+    if routes:
+        route = ", ".join(routes)
+    else:
+        route = openfda_data.get(
+            "route",
+            "N/A"
+        )
+
+    # ------------------------------------------------
+    # SUBSTANCE
+    # ------------------------------------------------
+
+    substance = ", ".join(
+        x.title()
+        for x in generic
     )
 
     # ------------------------------------------------
-    # USE PARSED SPL DATA IF AVAILABLE
+    # RETURN
     # ------------------------------------------------
-    if pipeline_data:
-
-        parsed_data = pipeline_data.get(
-            "parsed_data",
-            {}
-        )
-
-        manufacturer = parsed_data.get(
-            "manufacturer",
-            manufacturer
-        )
-
-        formulations = parsed_data.get(
-            "formulations",
-            []
-        )
-
-        if formulations:
-
-            dosage_forms = list(set(
-
-                f.get("dosage_form")
-
-                for f in formulations
-
-                if f.get("dosage_form")
-
-            ))
-
-            routes = list(set(
-
-                f.get("route")
-
-                for f in formulations
-
-                if f.get("route")
-
-            ))
-
-            if dosage_forms:
-
-                dosage_form = ", ".join(
-                    dosage_forms
-                )
-
-            if routes:
-
-                route = ", ".join(
-                    routes
-                )
 
     return {
 
-        # ------------------------------------------------
-        # OVERVIEW
-        # ------------------------------------------------
         "overview": {
 
-            "brand_name": openfda_data.get(
-                "brand_name",
-                "N/A"
-            ),
+            "brand_name": brand_name,
 
-            "generic_name": openfda_data.get(
-                "generic_name",
-                "N/A"
-            ),
+            "generic_name": generic_name,
 
             "manufacturer": manufacturer,
 
             "dosage_form": dosage_form,
 
-            "route": route,
+            "route": route
         },
 
-        # ------------------------------------------------
-        # CLINICAL
-        # ------------------------------------------------
         "clinical": {
 
-            "substance_name": openfda_data.get(
-                "substance_name",
-                "N/A"
-            ),
+            "substance_name": substance
         },
 
-        # ------------------------------------------------
-        # REGULATORY
-        # ------------------------------------------------
         "regulatory": {
 
             "status": "Approved",
 
-            "source": "OpenFDA"
+            "source": "DailyMed"
         },
 
-        # ------------------------------------------------
-        # RXNORM
-        # ------------------------------------------------
         "rxnorm": {
 
-            "rxcui": (
-                rxnorm_data.get(
-                    "rxcui",
-                    "N/A"
-                )
-                if rxnorm_data else "N/A"
+            "rxcui": rxnorm_data.get(
+                "rxcui",
+                "N/A"
             ),
 
-            "rxnorm_name": (
-                rxnorm_data.get(
-                    "rxnorm_name",
-                    "N/A"
-                )
-                if rxnorm_data else "N/A"
+            "rxnorm_name": rxnorm_data.get(
+                "rxnorm_name",
+                "N/A"
             ),
 
-            "tty": (
-                rxnorm_data.get(
-                    "tty",
-                    "N/A"
-                )
-                if rxnorm_data else "N/A"
+            "tty": rxnorm_data.get(
+                "tty",
+                "N/A"
             )
         },
 
-        # ------------------------------------------------
-        # ORANGE BOOK
-        # ------------------------------------------------
         "orangebook": {
 
-            "application_no": (
-                orangebook_data.get(
-                    "application_number",
-                    "N/A"
-                )
-                if orangebook_data else "N/A"
-            ),
+            "application_no": orange.get("application_number","N/A"),
 
-            "patent_count": (
-                orangebook_data.get(
-                    "patent_count",
-                    "N/A"
-                )
-                if orangebook_data else "N/A"
-            ),
+            "patent_count": orange.get("patent_count",0),
 
-            "exclusivity_count": (
-                orangebook_data.get(
-                    "exclusivity_count",
-                    "N/A"
-                )
-                if orangebook_data else "N/A"
-            ),
+            "exclusivity_count": orange.get("exclusivity_count",0),
 
-            "latest_patent_expiry": (
-                orangebook_data.get(
-                    "latest_patent_expiry",
-                    "N/A"
-                )
-                if orangebook_data else "N/A"
-            ),
+            "latest_patent_expiry": orange.get("latest_patent_expiry","N/A"),
 
-            "latest_exclusivity": (
-                orangebook_data.get(
-                    "latest_exclusivity",
-                    "N/A"
-                )
-                if orangebook_data else "N/A"
-            ),
+            "latest_exclusivity": orange.get("latest_exclusivity","N/A"),
 
-            "patent_risk": (
-                orangebook_data.get(
-                    "patent_risk",
-                    "N/A"
-                )
-                if orangebook_data else "N/A"
-            )
+            "patent_risk": orange.get("patent_risk","LOW")
         },
 
-        # ------------------------------------------------
-        # PORTFOLIO INTELLIGENCE
-        # ------------------------------------------------
         "portfolio": {
 
             "market_potential": "8.4 / 10",
 
             "competition": "Moderate",
 
-            "patent_risk": (
-                orangebook_data.get(
-                    "patent_risk",
-                    "N/A"
-                )
-                if orangebook_data else "N/A"
+            "patent_risk": orange.get(
+                "patent_risk",
+                "LOW"
             )
         }
     }
+
+

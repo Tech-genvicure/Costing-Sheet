@@ -1,5 +1,4 @@
 import re
-
 import streamlit as st # type: ignore
 import pandas as pd
 from app.services.dailymed_service import search_drug
@@ -9,6 +8,8 @@ from app.services.rxnorm_service import get_rxnorm_data
 from app.services.orangebook_service import build_orange_book_summary
 from app.services.pipeline_service import process_drug
 from app.services.commercial_service import build_commercial_model
+from io import BytesIO
+from openpyxl import Workbook # type: ignore
 
 
 # =====================================================
@@ -400,6 +401,154 @@ if "project_costs" not in st.session_state:
     }
 
 
+
+# =====================================================
+# EXPORT TO EXCEL
+# =====================================================
+
+def export_excel():
+
+    wb = Workbook()
+
+    # Remove default sheet
+    wb.remove(wb.active)
+
+    # ==========================================
+    # Helper Function
+    # ==========================================
+
+    def add_sheet(name, df):
+
+        if df is None:
+            return
+
+        if len(df) == 0:
+            return
+
+        ws = wb.create_sheet(title=name[:31])
+
+        ws.append(list(df.columns))
+
+        for row in df.itertuples(index=False):
+
+            ws.append(list(row))
+
+    # ==========================================
+    # Drug Profile
+    # ==========================================
+
+    if "profile_df" in st.session_state:
+
+        add_sheet(
+
+            "Drug Profile",
+
+            st.session_state.profile_df
+
+        )
+
+    # ==========================================
+    # Formulation
+    # ==========================================
+
+    if "strength_tables" in st.session_state:
+
+        for strength, df in (
+
+            st.session_state
+
+            .strength_tables
+
+            .items()
+
+        ):
+
+            add_sheet(
+
+                f"Formula {strength}",
+
+                df
+
+            )
+
+    # ==========================================
+    # Commercial
+    # ==========================================
+
+    if "economics_df" in st.session_state:
+
+        add_sheet(
+
+            "Commercial",
+
+            st.session_state.economics_df
+
+        )
+
+    # ==========================================
+    # RLD
+    # ==========================================
+
+    if "rld_summary_df" in st.session_state:
+
+        add_sheet(
+
+            "RLD Cost",
+
+            st.session_state.rld_summary_df
+
+        )
+
+    # ==========================================
+    # CMO
+    # ==========================================
+
+    if "cmo_df" in st.session_state:
+
+        add_sheet(
+
+            "CMO",
+
+            st.session_state.cmo_df
+
+        )
+
+    # ==========================================
+    # Packaging
+    # ==========================================
+
+    if "packaging_df" in st.session_state:
+
+        add_sheet(
+
+            "Packaging",
+
+            st.session_state.packaging_df
+
+        )
+
+    # ==========================================
+    # Final Cost
+    # ==========================================
+
+    if "get_cmo_cost" in st.session_state:
+
+        add_sheet(
+
+            "Final Cost",
+
+            st.session_state.final_cost_df
+
+        )
+
+    output = BytesIO()
+
+    wb.save(output)
+
+    output.seek(0)
+
+    return output
+
 # =====================================================
 # SEARCH SECTION
 # =====================================================
@@ -562,22 +711,61 @@ if (
         drug_name
     ]
 
-    pipeline_data = process_drug(
-
-        drug_name,
-
+    selected_manufacturer = (
         None
         if manufacturer == "ANY"
-        else manufacturer,
-
-        records=records
-
+        else manufacturer
     )
 
-
-    st.session_state.parsed_pipeline_data = (
-        pipeline_data
+    cached_drug = st.session_state.get(
+        "cached_pipeline_drug"
     )
+
+    cached_manufacturer = st.session_state.get(
+        "cached_pipeline_manufacturer"
+    )
+
+    if (
+
+        cached_drug != drug_name
+
+        or
+
+        cached_manufacturer != selected_manufacturer
+
+    ):
+
+        pipeline_data = process_drug(
+
+            drug_name,
+
+            selected_manufacturer,
+
+            records=records
+
+        )
+
+        st.session_state.parsed_pipeline_data = (
+            pipeline_data
+        )
+
+        st.session_state.cached_pipeline_drug = (
+            drug_name
+        )
+
+        st.session_state.cached_pipeline_manufacturer = (
+            selected_manufacturer
+        )
+
+    else:
+
+        pipeline_data = (
+            st.session_state.parsed_pipeline_data
+        )
+
+    print("\n========== PIPELINE RESULT ==========")
+    print(st.session_state.parsed_pipeline_data)
+    print(type(st.session_state.parsed_pipeline_data))
 
     if pipeline_data:
 
@@ -606,6 +794,10 @@ if (
             st.session_state.parsed_pipeline_data
 
         )
+
+        print("\n========== PROFILE ==========")
+        print(profile)
+        print(type(profile))
 
         st.session_state.profile = (
             profile
@@ -746,12 +938,13 @@ if st.session_state.analysis_done:
     # =================================================
     st.divider()
 
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
         "Regulatory",
         "Formulation Costing",
         "Commercial Model",
         "Product Economics",
         "API Calculations" ,
+        "RLD Calculations",
         "Project Costing"
     ])
 
@@ -783,9 +976,12 @@ if st.session_state.analysis_done:
 
         st.subheader("Orange Book Intelligence")
 
-        orange_book = (
-            st.session_state.parsed_pipeline_data["orange_book"]
-        )
+        pipeline = st.session_state.get("parsed_pipeline_data")
+
+        if pipeline:
+            orange_book = pipeline.get("orange_book", {})
+        else:
+            orange_book = {}
 
         o1, o2, o3, o4 = st.columns(4)
 
@@ -801,28 +997,33 @@ if st.session_state.analysis_done:
             }
 
         with o1:
+            
 
+            print("\n===== ORANGE BOOK =====")
+            print(orange_book)
+            print(type(orange_book))
+  
             st.metric(
                 "Application No",
-                orange_book["application_number"]
+                orange_book.get("application_number", "N/A")
             )
 
         with o2:
             st.metric(
                 "Patent Count",
-                orange_book["patent_count"]
+                orange_book.get("patent_count", 0)
             )
 
         with o3:
             st.metric(
                 "Exclusivity Count",
-                orange_book["exclusivity_count"]
+                orange_book.get("exclusivity_count", 0)
             )
 
         with o4:
             st.metric(
                 "Patent Risk",
-                orange_book["patent_risk"]
+                orange_book.get("patent_risk", "N/A")
             )
 
     # =================================================
@@ -891,14 +1092,22 @@ if st.session_state.analysis_done:
             ])
 
             # Existing strengths already loaded
-            existing_strengths = sorted(
-                list(st.session_state.strength_tables.keys())
-            )
+            existing_strengths = sorted([
+                s
+                for s in st.session_state.strength_tables.keys()
+                if s in current_strengths
+            ])
 
             # -------------------------------------------------
             # REBUILD ONLY IF STRENGTHS HAVE CHANGED
             # -------------------------------------------------
-            if current_strengths != existing_strengths:
+            init_key = f"{drug_name}_{dosage_form}"
+
+            if st.session_state.get("formulation_init_key") != init_key:
+
+                # build tables once
+
+                st.session_state.formulation_init_key = init_key
 
                 # Clear old manufacturer data
                 st.session_state.strength_tables = {}
@@ -1225,7 +1434,11 @@ if st.session_state.analysis_done:
                                 0.0
                             ),
 
-                        "cost per unit": 0.0
+                        "cost per unit":
+                          ingredient_data.get(
+                                "cost_per_unit",
+                                0.0
+                            ),
                     }])
 
                     table_df = pd.concat(
@@ -1351,7 +1564,10 @@ if st.session_state.analysis_done:
                     "cost per unit":
                         row.get(
                             "cost per unit",
-                            0.0
+                            ingredient_data.get(
+                                "per_mg_cost",
+                                0.0
+                            )
                         )
                 })
 
@@ -1475,7 +1691,7 @@ if st.session_state.analysis_done:
             st.session_state.strength_tables.items()
         ).copy()
 
-        for i in range(0, len(strength_items), 2):
+        for i in range(0, len(strength_items), 2):   
 
             col1, col2 = st.columns(2)
 
@@ -2819,10 +3035,264 @@ if st.session_state.analysis_done:
             st.markdown("---")
     
 
-    # ==========================================================
-    # TAB 6 : PROJECT COSTING
-    # ==========================================================
+    # ==========================================
+    # RLD PROCUREMENT COST
+    # ==========================================
     with tab6:
+
+        strengths = list(
+            st.session_state.strength_tables.keys()
+        )
+
+        # =====================================
+        # RLD COST PER BOTTLE
+        # =====================================
+        st.subheader("RLD Cost Per Bottle")
+
+        cost_df = pd.DataFrame({
+            "Strength": strengths,
+            "RLD Cost ($)": [0.0] * len(strengths)
+        })
+
+        # -------------------------------------
+        # LOAD PREVIOUS VALUES
+        # -------------------------------------
+        if (
+            "rld_cost_df" in st.session_state
+            and
+            not st.session_state.rld_cost_df.empty
+        ):
+
+            old_df = st.session_state.rld_cost_df.copy()
+
+            for i, strength in enumerate(strengths):
+
+                if strength in old_df["Strength"].values:
+
+                    cost_df.loc[
+                        i,
+                        "RLD Cost ($)"
+                    ] = float(
+
+                        old_df.loc[
+                            old_df["Strength"] == strength,
+                            "RLD Cost ($)"
+                        ].iloc[0]
+
+                    )
+
+        with st.form("rld_cost_form"):
+
+            edited_cost_df = st.data_editor(
+
+                cost_df,
+
+                use_container_width=True,
+
+                hide_index=True,
+
+                num_rows="fixed",
+
+                key="rld_cost_table"
+
+            )
+
+            save_cost = st.form_submit_button(
+                "💾 Save RLD Cost"
+            )
+
+        if save_cost:
+
+            st.session_state.rld_cost_df = (
+                edited_cost_df.copy()
+            )
+
+            st.success(
+                "RLD cost saved successfully."
+            )
+
+            st.rerun()
+
+        st.session_state.rld_cost_df = edited_cost_df
+
+        st.divider()
+
+        # =====================================
+        # NUMBER OF BOTTLES REQUIRED
+        # =====================================
+        st.subheader("Number of Bottles Required")
+
+        activities = [
+
+            "R&D",
+
+            "BE Study Pilot",
+
+            "BE Study Pivotal",
+
+            "Dissolution",
+
+            "Alcohol Dosing",
+
+            "Plant"
+
+        ]
+
+        requirement_df = pd.DataFrame({
+
+            "Activity": activities
+
+        })
+
+        for strength in strengths:
+
+            requirement_df[strength] = 0
+
+        # -------------------------------------
+        # LOAD PREVIOUS VALUES
+        # -------------------------------------
+        if (
+            "rld_requirement_df" in st.session_state
+            and
+            not st.session_state.rld_requirement_df.empty
+        ):
+
+            old_req = st.session_state.rld_requirement_df.copy()
+
+            if "Activity" in old_req.columns:
+
+                for strength in strengths:
+
+                    if strength in old_req.columns:
+
+                        requirement_df[strength] = old_req[strength]
+
+        # =====================================
+        # REQUIREMENT TABLE
+        # =====================================
+
+        with st.form("rld_requirement_form"):
+
+            edited_requirement_df = st.data_editor(
+
+                requirement_df,
+
+                use_container_width=True,
+
+                hide_index=True,
+
+                num_rows="fixed",
+
+                key="rld_requirement_table"
+
+            )
+
+            save_requirement = st.form_submit_button(
+                "💾 Save Bottle Requirements"
+            )
+
+        if save_requirement:
+
+            st.session_state.rld_requirement_df = (
+                edited_requirement_df.copy()
+            )
+
+            st.success(
+                "Bottle requirements saved successfully."
+            )
+
+            st.rerun()
+
+        st.session_state.rld_requirement_df = edited_requirement_df
+
+        st.divider()
+
+        # =====================================
+        # CALCULATE RLD COST
+        # =====================================
+        summary_rows = []
+
+        grand_total = 0.0
+
+        for strength in strengths:
+
+            total_bottles = int(
+
+                edited_requirement_df[
+                    strength
+                ].sum()
+
+            )
+
+            try:
+
+                bottle_cost = float(
+
+                    edited_cost_df.loc[
+                        edited_cost_df["Strength"] == strength,
+                        "RLD Cost ($)"
+                    ].iloc[0]
+
+                )
+
+            except:
+
+                bottle_cost = 0.0
+
+            total_cost = total_bottles * bottle_cost
+
+            grand_total += total_cost
+
+            summary_rows.append({
+
+                "Strength": strength,
+
+                "Bottle Cost ($)": bottle_cost,
+
+                "Total Bottles": total_bottles,
+
+                "Total RLD Cost ($)": round(
+                    total_cost,
+                    2
+                )
+
+            })
+
+        summary_df = pd.DataFrame(
+            summary_rows
+        )
+
+        st.subheader("RLD Cost Summary")
+
+        st.dataframe(
+
+            summary_df,
+
+            use_container_width=True,
+
+            hide_index=True
+
+        )
+
+        st.metric(
+
+            "Grand Total RLD Cost",
+
+            f"${grand_total:,.2f}"
+
+        )
+
+        # =====================================[]
+        # SAVE FOR FINAL COST PAGE
+        # =====================================
+        st.session_state.rld_summary_df = summary_df
+
+        st.session_state.rld_grand_total = grand_total
+
+    # ==========================================================
+    # TAB 7 : PROJECT COSTING
+    # ==========================================================
+    with tab7:
 
 
         def get_cmo_cost(dosage_forms):
@@ -2914,22 +3384,57 @@ if st.session_state.analysis_done:
 
         df = pd.DataFrame(rows)
 
-        edited_df = st.data_editor(
+        # ======================================================
+        # TABLE + SUMMARY
+        # ======================================================
+        left, right = st.columns([3, 1])
 
-            df,
+        # ==========================================
+        # LEFT : PROJECT COST TABLE
+        # ==========================================
+        with left:
 
-            use_container_width=True,
+            edited_df = st.data_editor(
 
-            hide_index=True,
+                df,
 
-            disabled=[
-                "Project Cost"
-            ],
+                use_container_width=True,
 
-            key="project_cost_editor"
+                hide_index=True,
 
-        )
+                height=430,
 
+                disabled=["Project Cost"],
+
+                column_config={
+
+                    "Project Cost": st.column_config.TextColumn(
+
+                        "Project Cost",
+
+                        width="medium"
+
+                    ),
+
+                    "Amount": st.column_config.NumberColumn(
+
+                        "Amount (USD)",
+
+                        format="$%.2f",
+
+                        width="small"
+
+                    )
+
+                },
+
+                key="project_cost_editor"
+
+            )
+
+        # ==========================================
+        # UPDATE SESSION STATE
+        # ==========================================
         total_project_cost = 0
 
         for _, row in edited_df.iterrows():
@@ -2944,10 +3449,32 @@ if st.session_state.analysis_done:
 
             total_project_cost += amount
 
-        st.metric(
+        # ==========================================
+        # RIGHT : SUMMARY CARD
+        # ==========================================
+        with right:
 
-            "Total Project Cost",
+            st.metric(
 
-            f"${total_project_cost:,.2f}"
+                "💰 Total Project Cost",
+
+                f"${total_project_cost:,.2f}"
+
+            )
+
+               
+        st.divider()
+
+        excel_file = export_excel()
+
+        st.download_button(
+
+            "📥 Download Portfolio Workbook",
+
+            data=excel_file,
+
+            file_name=f"{drug_name}_Portfolio.xlsx",
+
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
         )

@@ -407,6 +407,7 @@ def extract_manufactured_products(soup):
 
     return formulations
 
+
 # =========================================================
 # MAIN PARSER
 # =========================================================
@@ -444,18 +445,43 @@ def parse_spl_xml(xml_path):
     org = soup.find("representedOrganization")
 
     if org:
-        manufacturer = org.get_text(
-            " ",
-            strip=True
-        )
+
+        name = org.find("name")
+
+        if name:
+
+            manufacturer = name.get_text(strip=True)
+
+
 
     # =====================================================
     # INACTIVE INGREDIENTS
     # =====================================================
 
-    inactive_ingredients = extract_inactive_ingredients(
-        full_text
-    )
+    
+
+    def extract_inactive_ingredients(soup):
+
+        inactive = []
+
+        for ingredient in soup.find_all("ingredient"):
+
+            if ingredient.get("classCode") != "IACT":
+                continue
+
+            name = ingredient.find("name")
+
+            if not name:
+                continue
+
+            ingredient_name = name.get_text(strip=True)
+
+            if ingredient_name not in inactive:
+                inactive.append(ingredient_name)
+
+        return inactive
+    
+    inactive_ingredients = extract_inactive_ingredients(soup)
 
     # =====================================================
     # STRUCTURED PRODUCT PARSER (Parser V2)
@@ -511,21 +537,12 @@ def parse_spl_xml(xml_path):
     # =====================================================
 
     return {
-
         "title": title,
-
         "manufacturer": manufacturer,
-
         "active_ingredients": active_ingredients,
-
         "dosage_form": dosage_forms,
-
         "route": routes,
-
         "strengths": strengths,
-
         "inactive_ingredients": inactive_ingredients,
-
         "formulations": formulations
-
     }

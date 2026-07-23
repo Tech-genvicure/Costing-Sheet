@@ -34,3 +34,9 @@ desktop.ini
 # Excel temporary files
 ~$*.xlsx
 ~$*.xls
+
+
+data/raw_dailymed/
+*.db
+__pycache__/
+*.pyc

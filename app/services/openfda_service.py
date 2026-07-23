@@ -1,4 +1,4 @@
-import requests
+import requests # type: ignore
 from app.utils.data_cleaner import normalize_drug_data
 
 

@@ -142,6 +142,10 @@ def process_drug(
 
     parsed = parse_spl_xml(xml_path)
 
+    print("\n========== PARSER RETURN ==========")
+    print(parsed)
+    print(type(parsed))
+
     st.session_state.parsed_cache[
         cache_key
     ] = parsed
@@ -158,6 +162,9 @@ def process_drug(
 
     print("\nPARSED DATA:\n")
     print(parsed)
+
+    print("\nBRAND NAMES:")
+    print(parsed.get("brand_names"))
 
     # =====================================================
     # STEP 4 — FORMULATIONS
