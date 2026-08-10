@@ -168,19 +168,14 @@ def get_record_by_manufacturer(
 # =====================================================
 # DOWNLOAD SPL XML
 # =====================================================
-def download_spl_xml(setid):
+from requests.exceptions import (
+    ChunkedEncodingError,
+    ConnectionError,
+    Timeout,
+)
 
-    url = (
-        f"{BASE_URL}/spls/{setid}.xml"
-    )
 
-    response = requests.get(
-        url,
-        headers=HEADERS,
-        timeout=30
-    )
-
-    response.raise_for_status()
+def download_spl_xml(setid, retries=3):
 
     os.makedirs(
         "data/raw_dailymed",
@@ -191,16 +186,89 @@ def download_spl_xml(setid):
         f"data/raw_dailymed/{setid}.xml"
     )
 
-    with open(
-        file_path,
-        "wb"
-    ) as file:
+    # -----------------------------------------
+    # Use cached file if already downloaded
+    # -----------------------------------------
+    if (
+        os.path.exists(file_path)
+        and
+        os.path.getsize(file_path) > 0
+    ):
+        print(f"Using cached XML: {setid}")
+        return file_path
 
-        file.write(
-            response.content
-        )
+    url = (
+        f"{BASE_URL}/spls/{setid}.xml"
+    )
 
-    return file_path
+    # -----------------------------------------
+    # Retry download
+    # -----------------------------------------
+    for attempt in range(retries):
+
+        try:
+
+            print(
+                f"Downloading XML ({attempt+1}/{retries})..."
+            )
+
+            with requests.get(
+                url,
+                headers=HEADERS,
+                timeout=120,
+                stream=True
+            ) as response:
+
+                response.raise_for_status()
+
+                with open(
+                    file_path,
+                    "wb"
+                ) as file:
+
+                    for chunk in response.iter_content(
+                        chunk_size=8192
+                    ):
+
+                        if chunk:
+
+                            file.write(chunk)
+
+            # -----------------------------------------
+            # Validate download
+            # -----------------------------------------
+            if (
+                os.path.exists(file_path)
+                and
+                os.path.getsize(file_path) > 0
+            ):
+
+                print("XML downloaded successfully.")
+
+                return file_path
+
+        except (
+            ChunkedEncodingError,
+            ConnectionError,
+            Timeout,
+            requests.RequestException,
+        ) as e:
+
+            print(
+                f"Download failed ({attempt+1}/{retries})"
+            )
+            print(e)
+
+            # Delete incomplete file
+            if os.path.exists(file_path):
+
+                os.remove(file_path)
+
+            time.sleep(2 ** attempt)
+
+    raise RuntimeError(
+        f"Failed to download SPL XML for {setid}"
+    )
 
 
 # =====================================================

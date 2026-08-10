@@ -266,3 +266,72 @@ class DrugProfileBuilder:
                 seen.add(strength)
 
         return strengths
+
+    def get_variants(self, drug_name):
+
+        rows = self.repo.get_available_variants(drug_name)
+
+        variants = []
+        seen = set()
+
+        for row in rows:
+
+            form = row.get("Form", "")
+
+            if ";" in form:
+                dosage_form, route = form.split(";", 1)
+            else:
+                dosage_form = form
+                route = ""
+
+            # ---------- Display Name ----------
+            display_form = dosage_form.title()
+
+            if dosage_form.upper() == "SOLUTION" and route.upper() == "SUBCUTANEOUS":
+                display_form = "Injection"
+
+            elif dosage_form.upper() == "SOLUTION" and route.upper() == "INTRAVENOUS":
+                display_form = "Injection"
+
+            elif dosage_form.upper() == "POWDER":
+                display_form = "Powder"
+
+            elif dosage_form.upper() == "TABLET":
+                display_form = "Tablet"
+
+            elif dosage_form.upper() == "CAPSULE":
+                display_form = "Capsule"
+
+            applicant = (
+                row.get("Applicant")
+                or row.get("Applicant_Full_Name")
+                or row.get("SponsorName")
+            )
+
+            key = (
+                row["ApplNo"],
+                display_form,
+                applicant,
+            )
+
+            if key in seen:
+                continue
+
+            seen.add(key)
+
+            variants.append({
+
+                "application_no": row["ApplNo"],
+                "product_no": row["ProductNo"],
+
+                "dosage_form": display_form,
+                "route": route.title(),
+
+                "applicant": applicant,
+                "applicant_full_name": applicant,
+
+                "sponsor": row.get("SponsorName")
+
+            })
+
+        return variants

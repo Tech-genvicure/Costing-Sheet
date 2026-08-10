@@ -1,122 +1,3 @@
-import pandas as pd
-import os
-
-
-ORANGE_BOOK_DIR = "data/orangebook"
-
-PRODUCT_FILE = os.path.join(
-    ORANGE_BOOK_DIR,
-    "products.txt"
-)
-
-PATENT_FILE = os.path.join(
-    ORANGE_BOOK_DIR,
-    "patent.txt"
-)
-
-EXCLUSIVITY_FILE = os.path.join(
-    ORANGE_BOOK_DIR,
-    "exclusivity.txt"
-)
-
-
-def load_products():
-
-    return pd.read_csv(
-        PRODUCT_FILE,
-        sep="~",
-        dtype=str
-    )
-
-
-def load_patents():
-
-    return pd.read_csv(
-        PATENT_FILE,
-        sep="~",
-        dtype=str
-    )
-
-
-def load_exclusivities():
-
-    return pd.read_csv(
-        EXCLUSIVITY_FILE,
-        sep="~",
-        dtype=str
-    )
-
-
-def search_orange_book(drug_name):
-
-    products = load_products()
-
-    matches = products[
-        products["Trade_Name"]
-        .str.upper()
-        .str.contains(
-            drug_name.upper(),
-            na=False
-        )
-    ]
-
-    return matches.to_dict(
-        orient="records"
-    )
-
-
-def get_patents(app_no):
-
-    patents = load_patents()
-
-    matches = patents[
-        patents["Appl_No"] == str(app_no)
-    ]
-
-    return matches.to_dict(
-        orient="records"
-    )
-
-
-def get_exclusivities(app_no):
-
-    exclusivities = load_exclusivities()
-
-    matches = exclusivities[
-        exclusivities["Appl_No"] == str(app_no)
-    ]
-
-    return matches.to_dict(
-        orient="records"
-    )
-
-
-def build_orange_book_summary(drug_name):
-
-    products = search_orange_book(
-        drug_name
-    )
-
-    if not products:
-        return None
-
-    primary = products[0]
-
-    app_no = primary.get("Appl_No")
-
-    patents = get_patents(app_no)
-
-    exclusivities = get_exclusivities(app_no)
-
-    return {
-        "application_number": app_no,
-        "product": primary,
-        "patents": patents,
-        "exclusivities": exclusivities,
-        "patent_count": len(patents),
-        "exclusivity_count": len(exclusivities)
-    }
-
 from datetime import datetime
 
 
@@ -214,20 +95,17 @@ def calculate_patent_risk(
     return "LOW"
 
 
+def build_commercial_summary_from_profile(profile):
 
-def build_commercial_summary(
-    orange_book_data
-):
-
-    if not orange_book_data:
+    if not profile:
         return None
 
-    patents = orange_book_data.get(
+    patents = profile.get(
         "patents",
         []
     )
 
-    exclusivities = orange_book_data.get(
+    exclusivities = profile.get(
         "exclusivities",
         []
     )
@@ -248,7 +126,7 @@ def build_commercial_summary(
 
     exclusivity_count = len(exclusivities)
 
-    risk = calculate_patent_risk(
+    patent_risk = calculate_patent_risk(
         patent_count,
         exclusivity_count
     )
@@ -256,8 +134,8 @@ def build_commercial_summary(
     return {
 
         "application_number":
-            orange_book_data.get(
-                "application_number"
+            profile.get(
+                "application_no"
             ),
 
         "patent_count":
@@ -273,5 +151,5 @@ def build_commercial_summary(
             latest_exclusivity,
 
         "patent_risk":
-            risk
+            patent_risk
     }

@@ -220,6 +220,64 @@ class DrugRepository:
 
         return [dict(row) for row in self.cursor.fetchall()]
 
+    # ----------------------------------------------------
+    # AVAILABLE VARIANTS
+    # ----------------------------------------------------
+
+    def get_available_variants(self, query):
+
+        sql = """
+        SELECT DISTINCT
+
+            p.ApplNo,
+            p.ProductNo,
+            p.DrugName,
+            p.ActiveIngredient,
+            p.Form,
+            p.Strength,
+
+            o.Applicant,
+            o.Applicant_Full_Name,
+
+            a.SponsorName
+
+        FROM products p
+
+        JOIN applications a
+            ON p.ApplNo = a.ApplNo
+
+        LEFT JOIN orange_products o
+            ON p.ApplNo = o.Appl_No
+        AND p.ProductNo = o.Product_No
+
+        WHERE
+
+            p.DrugName LIKE ?
+
+            OR
+
+            p.ActiveIngredient LIKE ?
+
+        ORDER BY
+
+            p.Form,
+            o.Applicant,
+            p.Strength
+        """
+
+        self.cursor.execute(
+            sql,
+            (
+                f"%{query}%",
+                f"%{query}%"
+            )
+        )
+
+        return [
+            dict(row)
+            for row in self.cursor.fetchall()
+        ]
+
 
     # ----------------------------------------------------
     # CLOSE

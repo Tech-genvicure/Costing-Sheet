@@ -1,11 +1,10 @@
 import sqlite3
 
-conn = sqlite3.connect("app/database/pharma.db")
+conn = sqlite3.connect("data/ai_cache.db")
 
-cursor = conn.cursor()
-
-cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-
-print(cursor.fetchall())
+for row in conn.execute(
+    "SELECT name FROM sqlite_master WHERE type='table';"
+):
+    print(row)
 
 conn.close()

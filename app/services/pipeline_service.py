@@ -1,4 +1,6 @@
 import streamlit as st # type: ignore
+from app.database.dmf_repository import DMFRepository
+from app.services.ai_cost_service import AICostService
 
 from app.services.dailymed_service import (
     search_drug,
@@ -9,21 +11,16 @@ from app.services.parser_service import (
     parse_spl_xml
 )
 
-from app.services.formulation_service import (
-    save_parsed_formulations
-)
-
-from app.services.product_service import (
-    save_product
-)
-
 from app.services.scoring_service import (
     build_intelligence_summary
 )
 
 from app.services.orangebook_service import (
-    build_orange_book_summary,
-    build_commercial_summary
+    build_commercial_summary_from_profile
+)
+
+from app.services.drug_profile_builders import (
+    DrugProfileBuilder
 )
 
 from app.services.opportunity_service import (
@@ -216,28 +213,52 @@ def process_drug(
     print(intelligence)
 
     # =====================================================
-    # STEP 6 — ORANGE BOOK
+    # STEP 6 — REGULATORY SUMMARY (SQLite)
     # =====================================================
 
-    orange_book_raw = (
-        build_orange_book_summary(
-            drug_name
+    builder = DrugProfileBuilder() 
+    try:
+
+        profile = builder.build(
+            brand_name=drug_name
         )
-    )
+
+        repo = DMFRepository()
+
+        dmf_holders = repo.get_supplier_summary(
+            profile["generic_name"]
+        )
+
+        repo.close()
+
+    finally:
+
+        builder.close()
 
     orange_book_summary = (
-        build_commercial_summary(
-            orange_book_raw
+        build_commercial_summary_from_profile(
+            profile
         )
     )
 
-    print("\nORANGE BOOK SUMMARY:\n")
+    ai_service = AICostService()
+
+    ai_cost = ai_service.estimate(
+
+        profile,
+
+        parsed,
+
+        dmf_holders
+
+    )
+
+    print("\nREGULATORY SUMMARY:\n")
     print(orange_book_summary)
 
-    print("\nORANGE BOOK SUMMARY TYPE:")
+    print("\nREGULATORY SUMMARY TYPE:")
     print(type(orange_book_summary))
     print(orange_book_summary)
-
     # =====================================================
     # STEP 7 — OPPORTUNITY ENGINE
     # =====================================================
@@ -273,18 +294,11 @@ def process_drug(
             "2017"
     }
 
-    save_product(
-        product_data
-    )
+    
 
     # =====================================================
     # STEP 9 — SAVE FORMULATIONS
     # =====================================================
-
-    save_parsed_formulations(
-        setid,
-        formulations
-    )
 
     print(
         "\nPipeline completed successfully."
@@ -315,6 +329,8 @@ def process_drug(
 
         "orange_book":
             orange_book_summary,
+
+        "ai_cost": ai_cost,
 
         "final_opportunity":
             final_opportunity

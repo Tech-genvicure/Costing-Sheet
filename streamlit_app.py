@@ -1,20 +1,27 @@
 import re
-import streamlit as st  # type: ignore
+import streamlit as st # type: ignore
 import pandas as pd
 
 from app.services.dailymed_service import search_drug
-from app.services.openfda_service import get_drug_label
-from app.utils.drug_profile_builder import build_drug_profile
-from app.services.rxnorm_service import get_rxnorm_data
-from app.services.orangebook_service import build_orange_book_summary
 from app.services.pipeline_service import process_drug
 from app.services.commercial_service import build_commercial_model
-
-# NEW IMPORT
 from app.services.drug_profile_builders import DrugProfileBuilder
+from app.utils.display_utils import (
+    extract_product_details,
+    get_marketing_status,
+    get_first_product,
+    get_manufacturer,
+    format_strengths,
+    get_patent_summary,
+)
 
 from io import BytesIO
-from openpyxl import Workbook  # type: ignore
+from openpyxl import Workbook # type: ignore
+import os
+from dotenv import load_dotenv
+
+
+
 
 # =====================================================
 # PAGE CONFIG
@@ -380,14 +387,8 @@ if "year1_values" not in st.session_state:
 if "api_price_values" not in st.session_state:
     st.session_state.api_price_values = {}
 
-if "drug_name_saved" not in st.session_state:
-    st.session_state.drug_name_saved = None
-
 if "manufacturer_saved" not in st.session_state:
     st.session_state.manufacturer_saved = None
-
-if "strength_tables_initialized" not in st.session_state:
-    st.session_state.strength_tables_initialized = False
 
 if "selected_dosage_form" not in st.session_state:
     st.session_state.selected_dosage_form = ""
@@ -429,7 +430,12 @@ def export_excel():
         if len(df) == 0:
             return
 
-        ws = wb.create_sheet(title=name[:31])
+        import re
+
+        safe_name = re.sub(r'[\\/*?:\[\]]', "-", str(name))
+        safe_name = safe_name[:31]
+
+        ws = wb.create_sheet(title=safe_name)
 
         ws.append(list(df.columns))
 
@@ -558,7 +564,7 @@ def export_excel():
 # =====================================================
 st.divider()
 
-col1, col2, col3 = st.columns([4, 3, 1])
+col1, col2, col3, col4 = st.columns([4, 2, 3, 1])
 
 # -----------------------------------------
 # DRUG NAME
@@ -572,69 +578,95 @@ with col1:
     )
 
 # -----------------------------------------
-# DYNAMIC MANUFACTURER LIST
+# LOAD VARIANTS
 # -----------------------------------------
-manufacturer_options = ["ANY"]
+variants = []
 
 if drug_name:
 
-    records = search_drug(drug_name)
+    builder = DrugProfileBuilder()
 
-    manufacturers = []
+    try:
 
-    for record in records:
+        variants = builder.get_variants(drug_name)
+        
 
-        title = record.get(
-            "title",
-            ""
-        )
+    finally:
 
-        if "[" in title and "]" in title:
-
-            manufacturer_name = (
-                title
-                .split("[")[-1]
-                .replace("]", "")
-                .strip()
-            )
-
-            if (
-                manufacturer_name
-                and
-                manufacturer_name not in manufacturers
-            ):
-
-                manufacturers.append(
-                    manufacturer_name
-                )
-
-    manufacturer_options.extend(
-        manufacturers
-    )
+        builder.close()
 
 # -----------------------------------------
-# MANUFACTURER DROPDOWN
+# DOSAGE FORM
 # -----------------------------------------
+dosage_forms = []
+
+if variants:
+
+    dosage_forms = sorted({
+        v["dosage_form"]
+        for v in variants
+    })
+
 with col2:
 
-    manufacturer = st.selectbox(
-        "Manufacturer",
-        manufacturer_options,
-        key="manufacturer_select"
+    selected_dosage = st.selectbox(
+        "Dosage Form",
+        dosage_forms if dosage_forms else ["Select"],
+        key="dosage_form"
     )
 
 # -----------------------------------------
-# ANALYZE BUTTON
+# APPLICANTS
 # -----------------------------------------
+filtered_variants = []
+
+if variants:
+
+    filtered_variants = [
+
+        v
+
+        for v in variants
+
+        if v["dosage_form"] == selected_dosage
+
+    ]
+
 with col3:
+
+    selected_variant = st.selectbox(
+
+        "Applicant",
+
+        filtered_variants if filtered_variants else [{}],
+
+        format_func=lambda x: (
+            f"{x['applicant_full_name']}"
+            if x
+            else "Select"
+        ),
+
+        key="applicant"
+
+    )
+
+# -----------------------------------------
+# ANALYZE
+# -----------------------------------------
+with col4:
 
     st.write("")
     st.write("")
 
     analyze_button = st.button(
+
         "Analyze",
+
         key="analyze_button"
+
     )
+
+
 
 # =====================================================
 # ANALYZE BUTTON
@@ -664,7 +696,7 @@ if analyze_button:
             try:
 
                 profile = builder.build(
-                    brand_name=drug_name
+                    appl_no=selected_variant["application_no"]
                 )
 
             finally:
@@ -699,8 +731,6 @@ if (
 
     selected_manufacturer = (
         None
-        if manufacturer == "ANY"
-        else manufacturer
     )
 
     cached_drug = st.session_state.get(
@@ -711,6 +741,19 @@ if (
         "cached_pipeline_manufacturer"
     )
 
+    # Active FDA application (source of truth) — the DailyMed pipeline
+    # cache must also invalidate when this changes, even if the drug
+    # name / manufacturer selection stayed the same.
+    current_appl_no = (
+        st.session_state.profile.get("application_no")
+        if st.session_state.profile
+        else None
+    )
+
+    cached_appl_no = st.session_state.get(
+        "cached_pipeline_appl_no"
+    )
+
     if (
 
         cached_drug != drug_name
@@ -718,6 +761,10 @@ if (
         or
 
         cached_manufacturer != selected_manufacturer
+
+        or
+
+        cached_appl_no != current_appl_no
 
     ):
 
@@ -743,11 +790,27 @@ if (
             selected_manufacturer
         )
 
+        st.session_state.cached_pipeline_appl_no = (
+            current_appl_no
+        )
+
     else:
 
         pipeline_data = (
             st.session_state.parsed_pipeline_data
         )
+
+    # ============================================
+    # ALWAYS REFRESH AI COST
+    # ============================================
+
+    st.session_state.ai_cost = pipeline_data.get(
+        "ai_cost",
+        {}
+    )
+
+    print("\n========== AI COST ==========")
+    print(st.session_state.ai_cost)
 
     print("\n========== PIPELINE RESULT ==========")
     print(st.session_state.parsed_pipeline_data)
@@ -765,28 +828,6 @@ if (
             ]
 
         )
-
-
-        # =========================================
-        # BUILD PROFILE (SQLite)
-        # =========================================
-        builder = DrugProfileBuilder()
-
-        try:
-
-            profile = builder.build(
-                brand_name=drug_name
-            )
-
-        finally:
-
-            builder.close()
-
-        print("\n========== PROFILE ==========")
-        print(profile)
-        print(type(profile))
-
-        st.session_state.profile = profile
 
         # =========================================
         # RESET TABLES WHEN DRUG OR MANUFACTURER CHANGES
@@ -840,6 +881,31 @@ if st.session_state.analysis_done:
         st.session_state.parsed_pipeline_data
     )
 
+    # -----------------------------------------
+    # DailyMed only supplements the FDA profile
+    # (manufacturer / labeler) — it never sets
+    # brand, generic, dosage form, application
+    # number, or applicant.
+    # -----------------------------------------
+    dailymed_manufacturer = (
+        pipeline_data.get("parsed_data", {}).get("manufacturer")
+        if pipeline_data
+        else None
+    )
+
+    # -----------------------------------------
+    # FDA profile row for Excel export ("Drug Profile" sheet).
+    # FDA profile is the source of truth; DailyMed only adds
+    # the manufacturer/labeler alongside it.
+    # -----------------------------------------
+    st.session_state.profile_df = pd.DataFrame([{
+        "Brand Name": profile.get("brand_name", "N/A"),
+        "Generic Name": profile.get("generic_name", "N/A"),
+        "Application No": profile.get("application_no", "N/A"),
+        "Approval Date": profile.get("approval_date", "N/A"),
+        "Manufacturer (DailyMed)": dailymed_manufacturer or get_manufacturer(profile),
+    }])
+
 # CMO Table
 if st.session_state.analysis_done:
 
@@ -890,13 +956,11 @@ if st.session_state.analysis_done:
     k1, k2, k3, k4 = st.columns(4)
 
     # -----------------------------------------
-    # Get first product (if available)
+    # Product Details
     # -----------------------------------------
-    first_product = (
-        profile["products"][0]
-        if profile.get("products")
-        else {}
-    )
+    first_product = get_first_product(profile)
+
+    details = extract_product_details(first_product)
 
     with k1:
         st.metric(
@@ -913,13 +977,16 @@ if st.session_state.analysis_done:
     with k3:
         st.metric(
             "Dosage Form",
-            first_product.get("DosageForm", "N/A")
+            details["dosage_form"]
         )
 
     with k4:
         st.metric(
-            "Manufacturer",
-            profile.get("applicant", {}).get(
+            "Applicant Holder",
+            profile.get(
+                "applicant",
+                {}
+            ).get(
                 "short_name",
                 "N/A"
             )
@@ -948,24 +1015,22 @@ if st.session_state.analysis_done:
         st.subheader("Regulatory Overview")
 
         # -----------------------------------------
-        # First Product
+        # Product Details
         # -----------------------------------------
-        first_product = (
-            profile["products"][0]
-            if profile.get("products")
-            else {}
-        )
+        first_product = get_first_product(profile)
+
+        details = extract_product_details(first_product)
 
         r1, r2 = st.columns(2)
 
         with r1:
             st.info(
-                f"Route: {first_product.get('Route', 'N/A')}"
+                f"Route: {details['route']}"
             )
 
         with r2:
             st.info(
-                f"Marketing Status: {profile.get('marketing_status', 'N/A')}"
+                f"Marketing Status: {get_marketing_status(profile)}"
             )
 
         approval = profile.get("approval_date")
@@ -975,14 +1040,15 @@ if st.session_state.analysis_done:
                 f"Approval Date: {approval}"
             )
         else:
-            st.warning("Approval Date: N/A")
+            st.warning(
+                "Approval Date: N/A"
+            )
 
         st.divider()
 
         st.subheader("Orange Book Intelligence")
 
-        patents = profile.get("patents", [])
-        exclusivities = profile.get("exclusivities", [])
+        patent_summary = get_patent_summary(profile)
 
         o1, o2, o3, o4 = st.columns(4)
 
@@ -995,27 +1061,22 @@ if st.session_state.analysis_done:
         with o2:
             st.metric(
                 "Patent Count",
-                len(patents)
+                patent_summary["patent_count"]
             )
 
         with o3:
             st.metric(
                 "Exclusivity Count",
-                len(exclusivities)
+                patent_summary["exclusivity_count"]
             )
 
         with o4:
-
-            if len(patents) >= 10:
-                risk = "HIGH"
-            elif len(patents) >= 5:
-                risk = "MEDIUM"
-            else:
-                risk = "LOW"
-
             st.metric(
                 "Patent Risk",
-                risk
+                pipeline_data["orange_book"].get(
+                    "patent_risk",
+                    "N/A"
+                )
             )
     # =================================================
     # FORMULATION COSTING TAB
@@ -1032,20 +1093,40 @@ if st.session_state.analysis_done:
             else {}
         )
 
-        formulations = parsed_data.get(
-            "formulations",
+        # -------------------------------------------------
+        # FDA is the source of truth for strengths
+        # -------------------------------------------------
+        strengths = profile.get("strengths", [])
+
+        # -------------------------------------------------
+        # DailyMed enriches formulation
+        # -------------------------------------------------
+        active_ingredients = parsed_data.get(
+            "active_ingredients",
+            []
+        )
+
+        inactive_ingredients = parsed_data.get(
+            "inactive_ingredients",
             []
         )
 
         # =================================================
         # DOSAGE FORM
+        # The dosage form was already selected during the
+        # search step (FDA profile / application). Only ask
+        # again here if the DailyMed formulation data actually
+        # spans more than one dosage form for this drug.
         # =================================================
-        dosage_forms = list(set([
+        dosage_form = details["dosage_form"]
 
-            f.get("dosage_form", "TABLET")
+        st.info(f"Dosage Form: {dosage_form}")
 
-            for f in formulations
-        ]))
+        st.session_state.selected_dosage_form = dosage_form
+
+        # FDA profile's dosage form (source of truth), used as
+        # the default / auto-selected value.
+        fda_dosage_form = details.get("dosage_form")
 
         st.session_state.selected_dosage_form = dosage_forms
 
@@ -1053,12 +1134,33 @@ if st.session_state.analysis_done:
 
         with c1:
 
-            dosage_form = st.selectbox(
-                "Dosage Form",
-                dosage_forms
-                if dosage_forms
-                else ["TABLET"]
-            )
+            if len(dosage_forms) <= 1:
+
+                dosage_form = (
+                    dosage_forms[0]
+                    if dosage_forms
+                    else (fda_dosage_form or "TABLET")
+                )
+
+                st.text_input(
+                    "Dosage Form",
+                    value=dosage_form,
+                    disabled=True
+                )
+
+            else:
+
+                default_index = (
+                    dosage_forms.index(fda_dosage_form)
+                    if fda_dosage_form in dosage_forms
+                    else 0
+                )
+
+                dosage_form = st.selectbox(
+                    "Dosage Form",
+                    dosage_forms,
+                    index=default_index
+                )
 
         with c2:
 
@@ -1070,151 +1172,116 @@ if st.session_state.analysis_done:
 
         st.divider()
 
+        st.write("===== AI COST =====")
+        st.json(st.session_state.get("ai_cost", {}))
+
         # =================================================
         # INITIAL / REBUILD TABLE GENERATION
         # =================================================
-        if formulations:
+        if strengths:
 
-            # Current strengths for selected dosage form
-            current_strengths = sorted([
-                f["strength"]
-                for f in formulations
-                if f.get("dosage_form") == dosage_form
-            ])
-
-            # Existing strengths already loaded
-            existing_strengths = sorted([
-                s
-                for s in st.session_state.strength_tables.keys()
-                if s in current_strengths
-            ])
-
-            # -------------------------------------------------
-            # REBUILD ONLY IF STRENGTHS HAVE CHANGED
-            # -------------------------------------------------
-            init_key = f"{drug_name}_{dosage_form}"
+            init_key = f"{profile['application_no']}_{dosage_form}"
 
             if st.session_state.get("formulation_init_key") != init_key:
 
-                # build tables once
-
                 st.session_state.formulation_init_key = init_key
 
-                # Clear old manufacturer data
                 st.session_state.strength_tables = {}
                 st.session_state.ingredient_costs = {}
                 st.session_state.strength_totals = {}
 
-                # Build new strength tables
-                for formulation in formulations:
+                api_name = (
+                    active_ingredients[0]
+                    if active_ingredients
+                    else "API"
+                )
+
+
+                for strength in strengths:
 
                     # -----------------------------------------
-                    # DOSAGE FORM FILTER
+                    # Original FDA strength
+                    # Example:
+                    # 0.25MG/0.5ML (0.25MG/0.5ML)
                     # -----------------------------------------
-                    if (
-                        formulation.get("dosage_form")
-                        != dosage_form
-                    ):
-                        continue
+                    strength_label = str(strength)
 
-                    # -----------------------------------------
-                    # STRENGTH
-                    # -----------------------------------------
-                    strength = formulation.get(
-                        "strength",
-                        "0"
+                    match = re.search(
+                        r"(\d+(?:\.\d+)?)",
+                        strength_label
                     )
 
-                    # -----------------------------------------
-                    # API NAME
-                    # -----------------------------------------
-                    api_name = formulation.get(
-                        "api_name",
-                        "API"
-                    ).upper()
-
-                    # -----------------------------------------
-                    # MG VALUE
-                    # -----------------------------------------
-                    try:
-
-                        mg_value = float(
-                            strength
-                            .lower()
-                            .replace("mg", "")
-                            .strip()
-                        )
-
-                    except:
-
+                    if match:
+                        mg_value = float(match.group(1))
+                    else:
                         mg_value = 0.0
 
                     # -----------------------------------------
-                    # DEFAULT ROWS
+                    # Clean display name
+                    # Example:
+                    # 0.25 mg
                     # -----------------------------------------
-                    rows = [
+                    display_strength = f"{mg_value:g} mg"
 
-                        {
-                            "Formulation": api_name,
-                            "mg per unit": mg_value
-                        },
+                    rows = []
 
-                        {
-                            "Formulation": "EXCIPIENT 1",
-                            "mg per unit": 0.0
-                        },
+                    # API
+                    rows.append({
+                        "Formulation": api_name.upper(),
+                        "mg per unit": mg_value
+                    })
 
-                        {
-                            "Formulation": "EXCIPIENT 2",
-                            "mg per unit": 0.0
-                        }
+                    # Register API cost
+                    api_upper = api_name.upper().strip()
 
-                    ]
+                    if api_upper not in st.session_state.ingredient_costs:
 
-                    # -----------------------------------------
-                    # BUILD DATAFRAME
-                    # -----------------------------------------
-                    df = pd.DataFrame(rows)
+                        api_price = (
 
-                    st.session_state.strength_tables[
-                        strength
-                    ] = df
+                            st.session_state.ai_cost
 
-                    # -----------------------------------------
-                    # REGISTER INGREDIENTS
-                    # -----------------------------------------
-                    for row in rows:
+                            .get("api_cost", {})
 
-                        ingredient = (
-                            str(row["Formulation"])
-                            .upper()
-                            .strip()
+                            .get("typical", 0)
+
                         )
 
-                        if (
-                            ingredient
-                            not in st.session_state.ingredient_costs
-                        ):
+                        st.session_state.ingredient_costs[api_upper] = {
 
-                            st.session_state.ingredient_costs[
-                                ingredient
-                            ] = {
+                            "per_kg_cost": api_price,
 
+                            "per_mg_cost": api_price / 1_000_000
+
+                        }
+
+                    # Excipients
+                    for excipient in inactive_ingredients:
+
+                        excipient = excipient.upper().strip()
+
+                        rows.append({
+                            "Formulation": excipient,
+                            "mg per unit": 0.0
+                        })
+
+                        if excipient not in st.session_state.ingredient_costs:
+
+                            st.session_state.ingredient_costs[excipient] = {
                                 "per_kg_cost": 0.0,
                                 "per_mg_cost": 0.0
-
                             }
 
-                # -----------------------------------------
-                # RESET DOWNSTREAM CALCULATIONS
-                # -----------------------------------------
-                st.session_state.year1_values = {}
-                st.session_state.discount_values = {}
-                st.session_state.markup_values = {}
-                st.session_state.eb_tables = {}
+                    df = pd.DataFrame(rows)
+
+                    # -----------------------------------------
+                    # IMPORTANT:
+                    # Store using clean label instead of FDA text
+                    # -----------------------------------------
+                    st.session_state.strength_tables[display_strength] = df
 
                 st.session_state.strength_tables_initialized = True
 
+                st.success("Rebuilding strength tables")
         # =================================================
         # GLOBAL COST MASTER
         # =================================================
@@ -1492,21 +1559,15 @@ if st.session_state.analysis_done:
             # ==========================================
             # REMOVE DELETED INGREDIENTS
             # ==========================================
-            table_df = table_df[
 
+            table_df = table_df[
                 table_df["Formulation"]
                 .astype(str)
                 .str.upper()
                 .str.strip()
                 .isin(all_master_ingredients)
-
-            ]
-
-            st.session_state.strength_tables[
-                strength_name
-            ] = table_df.reset_index(
-                drop=True
-            )
+            ].reset_index(drop=True)
+            
             # -----------------------------------------
             # UPDATE COST COLUMNS
             # -----------------------------------------
@@ -1829,11 +1890,9 @@ if st.session_state.analysis_done:
 
                     "Formulation": "TOTAL",
 
-                    "mg per unit": "",
-
-                    "per kg cost": "",
-
-                    "per mg cost": "",
+                    "mg per unit": None,
+                    "per kg cost": None,
+                    "per mg cost": None,
 
                     "cost per unit":
                         total_unit_cost,
@@ -2072,6 +2131,7 @@ if st.session_state.analysis_done:
                     }
 
             st.divider()
+           
 
     # ==========================================
     # COMMERCIAL MODEL
@@ -3040,18 +3100,38 @@ if st.session_state.analysis_done:
         # =====================================
         st.subheader("RLD Cost Per Bottle")
 
+        # =====================================
+        # DEFAULT RLD COST FROM AI
+        # =====================================
+
+        default_rld = (
+            st.session_state
+            .get("ai_cost", {})
+            .get("commercial_cost", {})
+            .get("typical", 0)
+        )
+
         cost_df = pd.DataFrame({
+
             "Strength": strengths,
-            "RLD Cost ($)": [0.0] * len(strengths)
+
+            "RLD Cost ($)": [
+                float(default_rld)
+            ] * len(strengths)
+
         })
 
         # -------------------------------------
         # LOAD PREVIOUS VALUES
         # -------------------------------------
         if (
+
             "rld_cost_df" in st.session_state
+
             and
+
             not st.session_state.rld_cost_df.empty
+
         ):
 
             old_df = st.session_state.rld_cost_df.copy()
@@ -3060,10 +3140,7 @@ if st.session_state.analysis_done:
 
                 if strength in old_df["Strength"].values:
 
-                    cost_df.loc[
-                        i,
-                        "RLD Cost ($)"
-                    ] = float(
+                    previous_value = float(
 
                         old_df.loc[
                             old_df["Strength"] == strength,
@@ -3071,6 +3148,18 @@ if st.session_state.analysis_done:
                         ].iloc[0]
 
                     )
+
+                    # ------------------------------------
+                    # Keep manual edits.
+                    # Only use AI if previous value is zero.
+                    # ------------------------------------
+
+                    if previous_value > 0:
+
+                        cost_df.loc[
+                            i,
+                            "RLD Cost ($)"
+                        ] = previous_value
 
         with st.form("rld_cost_form"):
 
@@ -3295,7 +3384,7 @@ if st.session_state.analysis_done:
             if isinstance(dosage_forms, list):
                 dosage_forms = dosage_forms[0] if dosage_forms else ""
 
-            dosage_forms = str(dosage_form).upper().strip()
+            dosage_forms = str(dosage_forms).upper().strip()
 
             return CMO_COST_MASTER.get(dosage_forms, 0)
 
